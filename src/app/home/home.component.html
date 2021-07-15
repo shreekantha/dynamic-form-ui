@@ -1,0 +1,37 @@
+<div class="flex-container">
+  <div fxLayout="row" fxLayout.xs="column"></div>
+  <div fxLayout="row" fxLayout.xs="column" *ngIf="catagories">
+    <!-- <div fxFlex="1 1 auto" class="col-md-6" *ngFor="let cat of catagories"> -->
+
+    <mat-card fxFlex="1 1" class="mat-card" *ngFor="let cat of catagories">
+      <mat-card-header>
+        <mat-card-title>{{ cat.svcName }}</mat-card-title>
+        <mat-card-subtitle> {{ cat.svcCode }} </mat-card-subtitle>
+      </mat-card-header>
+      <divider></divider>
+      <mat-card-content>
+        {{ cat.description }}
+      </mat-card-content>
+
+      <!-- <mat-card-footer> -->
+      <mat-card-actions>
+        <button
+          align="end"
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="
+            onClick(
+              'https://gpet-server-app.herokuapp.com/gpet/api/scategory/' +
+                cat.id
+            )
+          "
+        >
+          Configure
+        </button>
+      </mat-card-actions>
+      <!-- </mat-card-footer> -->
+    </mat-card>
+    <!-- </div> -->
+  </div>
+</div>

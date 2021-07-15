@@ -1,0 +1,129 @@
+<div id="form" [formGroup]="form">
+  <div [ngSwitch]="input.controlType">
+    <div class="abc">
+      <div *ngSwitchCase="'textbox'">
+        <mat-form-field class="full-width" *ngIf="!input.dependency.notShow">
+          <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
+          <input
+            matInput
+            class="form-control"
+            [formControlName]="input.key"
+            [id]="input.key"
+            [type]="input.type"
+          />
+
+          <mat-error
+            *ngIf="
+              form.get(input.key).invalid &&
+              (form.get(input.key).dirty || form.get(input.key).touched)
+            "
+          >
+            <!-- <small style="color: red" *ngIf="form.get(input.key).errors.required">
+            {{ input.label }} is Required
+          </small>
+          <small style="color: red" *ngIf="form.get(input.key).errors.minlength">
+            {{ input.label }} must be minmum 10 characters.
+          </small>
+          <small style="color: red" *ngIf="form.get(input.key).errors.maxlength">
+            {{ input.label }} must be maximun 11 characters.
+          </small> -->
+            <app-error-message
+              [input]="input"
+              [form]="form"
+            ></app-error-message>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase="'dropdown'">
+        <mat-form-field class="full-width" *ngIf="!input.dependency.notShow">
+          <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
+          <mat-select
+            [id]="input.key"
+            [formControlName]="input.key"
+            (selectionChange)="
+              onChange(
+                serviceForm.key,
+                selected,
+                input.dependents,
+                input.dependentType
+              )
+            "
+            [(value)]="selected"
+          >
+            <mat-option *ngFor="let opt of input.options" [value]="opt.value">
+              {{ opt.value }}
+            </mat-option>
+          </mat-select>
+          <div *ngIf="form.get(input.key).dirty || form.get(input.key).touched">
+            <small style="color: red" *ngIf="!form.get(input.key).valid">
+              {{ input.label }} is Required
+            </small>
+          </div>
+        </mat-form-field>
+      </div>
+
+      <div *ngSwitchCase="'checkbox'">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [formControlName]="input.key"
+            [id]="input.key"
+          />
+          <label class="form-check-label" [attr.for]="input.key">{{
+            input.label
+          }}</label>
+          <div *ngIf="form.get(input.key).dirty || form.get(input.key).touched">
+            <small style="color: red" *ngIf="!form.get(input.key).valid">
+              {{ input.label }} is Required
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'radio'">
+        <mat-radio-group *ngIf="!input.dependency.notShow">
+          <!-- {{input | json}} -->
+          <mat-radio-group [formControlName]="input.key">
+            <mat-radio-button
+              *ngFor="let opt of input.options"
+              class="form-check-label"
+              (change)="
+                onChange(
+                  serviceForm.key,
+                  opt.value,
+                  input.dependents,
+                  input.dependentType
+                )
+              "
+              [attr.for]="opt.key"
+            >
+              {{ opt.value }}
+            </mat-radio-button>
+          </mat-radio-group>
+          <div *ngIf="form.get(input.key).dirty || form.get(input.key).touched">
+            <small style="color: red" *ngIf="!form.get(input.key).valid">
+              {{ input.label }} is Required
+            </small>
+          </div>
+        </mat-radio-group>
+      </div>
+
+      <div *ngSwitchCase="'textarea'">
+        <label [attr.for]="input.key">{{ input.label }}</label>
+        <textarea
+          class="form-control"
+          [formControlName]="input.key"
+          [id]="input.key"
+          rows="5"
+        ></textarea>
+        <div *ngIf="form.get(input.key).dirty || form.get(input.key).touched">
+          <small style="color: red" *ngIf="!form.get(input.key).valid">
+            {{ input.label }} is Required
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

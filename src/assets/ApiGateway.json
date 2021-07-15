@@ -1,0 +1,284 @@
+{
+  "svcName": "Amazon API Gateway",
+  "svcCode": "1001",
+  "description": "Amazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale. APIs act as the front door for applications to access data, business logic, or functionality from your backend services.",
+  "svcDetails": {
+    "forms": [
+      {
+        "key": "1",
+        "name": "HTTP APIs",
+        "description": "Select the units, number, and frequency for HTTP API requests",
+        "groups": [
+          {
+            "order": 1,
+            "fields": [
+              {
+                "controlType": "dropdown",
+                "key": "httpapi",
+                "label": "HTTP API requests units",
+                "options": [
+                  { "key": "exactNumber", "value": "ExactNumber" },
+                  { "key": "thousands", "value": "Thousands" },
+                  { "key": "millions", "value": "Millions" }
+                ],
+                "order": 1,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              },
+              {
+                "controlType": "dropdown",
+                "key": "httpapi",
+                "label": "Rest API requests units",
+                "options": [
+                  { "key": "exactNumber", "value": "ExactNumber" },
+                  { "key": "thousands", "value": "Thousands" },
+                  { "key": "millions", "value": "Millions" }
+                ],
+                "order": 1,
+                "dependency": {},
+
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "order": 2,
+            "fields": [
+              {
+                "controlType": "textbox",
+                "key": "requests",
+                "label": "Requests",
+                "required": true,
+                "order": 1,
+                "dependency": {},
+                "type": "text",
+                "validator": {
+                  "required": true,
+                  "minLength": 10,
+                  "maxLength": 11
+                }
+              },
+              {
+                "controlType": "dropdown",
+                "key": "frequency",
+                "label": "Frequency",
+                "type": "dropdown",
+                "options": [
+                  { "key": "persecond", "value": "Per Second" },
+                  { "key": "perminute", "value": "Per Minute" }
+                ],
+                "order": 2,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "order": 3,
+            "fields": [
+              {
+                "controlType": "textbox",
+                "key": "averagesize",
+                "label": "Average size of each request",
+                "type": "textbox",
+                "required": true,
+                "order": 1,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              },
+
+              {
+                "controlType": "dropdown",
+                "key": "requestsize",
+                "label": "Request Size",
+                "type": "dropdown",
+                "options": [
+                  { "key": "kb", "value": "KB" },
+                  { "key": "mb", "value": "MB" }
+                ],
+                "order": 2,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          }
+        ],
+        "dependency": {}
+      },
+      {
+        "key": "2",
+        "name": "REST APIs",
+        "description": "Select the units, number, and frequency for REST API requests",
+        "dependency": {},
+        "groups": [
+          {
+            "order": 1,
+            "fields": [
+              {
+                "controlType": "dropdown",
+                "key": "restapi",
+                "label": "Rest API requests units",
+                "options": [
+                  { "key": "exactNumber", "value": "ExactNumber" },
+                  { "key": "thousands", "value": "Thousands" },
+                  { "key": "millions", "value": "Millions" }
+                ],
+                "order": 1,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "order": 2,
+            "fields": [
+              {
+                "controlType": "textbox",
+                "key": "restrequests",
+                "label": "Requests",
+                "required": true,
+                "order": 1,
+                "dependency": {},
+                "validator": {
+                  "required": true,
+                  "minLength": 10,
+                  "maxLength": 11
+                }
+              },
+              {
+                "controlType": "dropdown",
+                "key": "restfrequency",
+                "label": "Frequency",
+                "type": "dropdown",
+                "options": [
+                  { "key": "persecond", "value": "Per Second" },
+                  { "key": "perminute", "value": "Per Minute" }
+                ],
+                "order": 2,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "order": 3,
+            "fields": [
+              {
+                "controlType": "dropdown",
+                "key": "cacheMemSize",
+                "label": "Cache memory size (GB)",
+                "type": "dropdown",
+                "options": [
+                  { "key": "none", "value": "None" },
+                  { "key": "0.5", "value": "0.5" },
+                  { "key": "1.6", "value": "1.6" }
+                ],
+                "order": 2,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "key": "3",
+        "name": "WebScoketApi",
+        "description": "Select the units, number, and frequency for REST API requests",
+        "dependency": {},
+        "groups": [
+          {
+            "order": 1,
+            "fields": [
+              {
+                "controlType": "dropdown",
+                "key": "websocketapi",
+                "label": "Rest API requests units",
+                "options": [
+                  { "key": "exactNumber", "value": "ExactNumber" },
+                  { "key": "thousands", "value": "Thousands" },
+                  { "key": "millions", "value": "Millions" }
+                ],
+                "order": 1,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "order": 2,
+            "fields": [
+              {
+                "controlType": "textbox",
+                "key": "websocketrestrequests",
+                "label": "Requests",
+                "required": true,
+                "order": 1,
+                "dependency": {},
+                "validator": {
+                  "required": true,
+                  "minLength": 10,
+                  "maxLength": 11
+                }
+              },
+              {
+                "controlType": "dropdown",
+                "key": "websocketfrequency",
+                "label": "Frequency",
+                "type": "dropdown",
+                "options": [
+                  { "key": "persecond", "value": "Per Second" },
+                  { "key": "perminute", "value": "Per Minute" }
+                ],
+                "order": 2,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          },
+          {
+            "order": 3,
+            "fields": [
+              {
+                "controlType": "dropdown",
+                "key": "websocketcacheMemSize",
+                "label": "Cache memory size (GB)",
+                "type": "dropdown",
+                "options": [
+                  { "key": "none", "value": "None" },
+                  { "key": "0.5", "value": "0.5" },
+                  { "key": "1.6", "value": "1.6" }
+                ],
+                "order": 2,
+                "dependency": {},
+                "validator": {
+                  "required": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

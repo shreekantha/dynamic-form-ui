@@ -1,0 +1,66 @@
+<div class="container" class="body">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="flex-container" fxLayout="column">
+      <div class="col-md-12">&nbsp;</div>
+    </div>
+    <div class="flex-container" fxLayout="column">
+      <div class="col-md-12">
+        <h1>{{ formData.svcName }}</h1>
+      </div>
+    </div>
+    <div class="container">
+      <div
+        *ngFor="let serviceForm of formData.svcDetails.forms"
+        class="form-group"
+      >
+        <mat-card class="mat-card" *ngIf="!serviceForm.dependency.notShow">
+          <mat-card-header>
+            <mat-card-title>{{ serviceForm.name }}</mat-card-title>
+            <mat-card-subtitle>{{ serviceForm.description }}</mat-card-subtitle>
+          </mat-card-header>
+          <divider></divider>
+          <mat-card-content>
+            <!-- <div class="container"> -->
+            <div
+              class="flex-container"
+              fxLayout="row"
+              fxLayout.xs="column"
+              *ngFor="let group of serviceForm.groups"
+            >
+              <div fxFlex="1 1 auto" *ngFor="let formField of group.fields">
+                <FormInput
+                  [group]="group"
+                  [serviceForm]="serviceForm"
+                  [input]="formField"
+                  [form]="form"
+                  (dependencyFieldData)="onChange($event)"
+                ></FormInput>
+              </div>
+            </div>
+            <!-- </div> -->
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div fxLayout="row" class="row" style="float: right; margin-top: 10px">
+      <div
+        class="form-group col-md-12 text-right"
+        style="float: right; text-align: right"
+      >
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          Create Estimate
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <!-- <div *ngIf="payLoad" class="form-group">
+    <strong>Here's the payload</strong><br />{{ payLoad }}
+  </div> -->
+</div>

@@ -1,0 +1,33 @@
+.w3-button1 {
+    /* color: #000!important; */
+    background-color:skyblue!important;
+}
+.w3-button2 {
+    /* color: #000!important; */
+    background-color:cornflowerblue!important;
+}
+.w3-button3 {
+    /* color: #000!important; */
+    background-color:lightskyblue!important;
+}
+
+.w3-button4 {
+    /* color: #000!important; */
+    background-color:slateblue!important;
+}
+.w3-button5 {
+    /* color: #000!important; */
+    background-color:steelblue!important;
+}
+.w3-block {
+    display: block;
+    width: 40%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.mat-card{
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
