@@ -51,7 +51,7 @@
             "
             [(value)]="selected"
           >
-            <mat-option *ngFor="let opt of input.options" [value]="opt.value">
+            <mat-option *ngFor="let opt of input.options" [value]="opt.key">
               {{ opt.value }}
             </mat-option>
           </mat-select>
@@ -92,7 +92,7 @@
               (change)="
                 onChange(
                   serviceForm.key,
-                  opt.value,
+                  opt.key,
                   input.dependents,
                   input.dependentType
                 )

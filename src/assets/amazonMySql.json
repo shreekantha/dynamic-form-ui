@@ -41,7 +41,7 @@
         "description": "",
         "dependency": {
           "on": "templateOne",
-          "is": "mysql",
+          "is": "sql",
           "notShow": true
         },
         "groups": [
@@ -93,7 +93,7 @@
                 "type": "textbox",
                 "dependency": {
                   "on": "frequency",
-                  "is": "Per Week",
+                  "is": "perWeek",
                   "notShow": true,
                   "validator": {
                     "required": true
@@ -159,7 +159,7 @@
                 },
                 "dependency": {
                   "on": "pricingmodel",
-                  "is": "OnDemand",
+                  "is": "onDemand",
                   "notShow": true
                 }
               }
@@ -183,7 +183,7 @@
                 },
                 "dependency": {
                   "on": "pricingmodel",
-                  "is": "Reserved",
+                  "is": "reserved",
                   "notShow": true
                 }
               }
@@ -204,7 +204,7 @@
                 },
                 "dependency": {
                   "on": "pricingmodel",
-                  "is": "Reserved",
+                  "is": "reserved",
                   "notShow": true
                 }
               }
@@ -218,7 +218,7 @@
         "description": "",
         "dependency": {
           "on": "templateOne",
-          "is": "mysql-server-less",
+          "is": "au",
           "notShow": true
         },
         "groups": [
