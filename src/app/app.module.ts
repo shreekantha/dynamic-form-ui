@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -24,7 +25,6 @@ import { ErrorMessageComponent } from './dynamic-form/error-message/error-messag
 import { HomeComponent } from './home/home.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +33,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     DynamicFormMainComponentComponent,
     HomeComponent,
     SideNavComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +52,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     MatSelectModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

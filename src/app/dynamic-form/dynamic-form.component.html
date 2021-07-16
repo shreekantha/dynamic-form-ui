@@ -40,18 +40,19 @@
             <!-- </div> -->
           </mat-card-content>
           <mat-card-footer>
-            <mat-accordion>
+            <mat-accordion togglePosition="before">
               <mat-expansion-panel
-                (opened)="calculations = getCalculations('/assets/calc.json')"
+                (opened)="getCalculations(serviceForm, '/assets/calc.json')"
               >
                 <mat-expansion-panel-header>
-                  <mat-panel-title> Show Calculations </mat-panel-title>
-                  <mat-panel-description>
-                    {{ calculations | json }}
-                  </mat-panel-description>
+                  <mat-panel-title>Show Calculations</mat-panel-title>
                 </mat-expansion-panel-header>
-                <ul *ngIf="calculations">
-                  <li *ngFor="let item of calculations">
+                <ul
+                  *ngIf="
+                    calculation && calculation.templateKey === serviceForm.key
+                  "
+                >
+                  <li *ngFor="let item of calculation.values">
                     {{ item }}
                   </li>
                 </ul>
@@ -66,6 +67,9 @@
           </mat-card-footer>
         </mat-card>
       </div>
+    </div>
+    <div fxLayout="row" style="margin-top: 60px">
+      <mat-divider></mat-divider>
     </div>
 
     <div fxLayout="row" class="row" style="float: right; margin-top: 10px">

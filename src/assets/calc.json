@@ -1,5 +1,8 @@
-[
-  "34 KB per request / 512 KB request increment = 0.06640625 request(s)",
-  "RoundUp (0.06640625) = 1 billable request(s)",
-  "HTTP API request cost (monthly): 0.00 USD"
-]
+{
+  "templateKey": "2",
+  "values": [
+    "34 KB per request / 512 KB request increment = 0.06640625 request(s)",
+    "RoundUp (0.06640625) = 1 billable request(s)",
+    "HTTP API request cost (monthly): 0.00 USD"
+  ]
+}
