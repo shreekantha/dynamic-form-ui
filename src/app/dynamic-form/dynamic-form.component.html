@@ -18,8 +18,8 @@
             <mat-card-title>{{ serviceForm.name }}</mat-card-title>
             <mat-card-subtitle>{{ serviceForm.description }}</mat-card-subtitle>
           </mat-card-header>
-          <divider></divider>
           <mat-card-content>
+            <!-- <mat-divider></mat-divider> -->
             <!-- <div class="container"> -->
             <div
               class="flex-container"
@@ -39,6 +39,31 @@
             </div>
             <!-- </div> -->
           </mat-card-content>
+          <mat-card-footer>
+            <mat-accordion>
+              <mat-expansion-panel
+                (opened)="calculations = getCalculations('/assets/calc.json')"
+              >
+                <mat-expansion-panel-header>
+                  <mat-panel-title> Show Calculations </mat-panel-title>
+                  <mat-panel-description>
+                    {{ calculations | json }}
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <ul *ngIf="calculations">
+                  <li *ngFor="let item of calculations">
+                    {{ item }}
+                  </li>
+                </ul>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <!-- <ul>
+              <li *ngFor="let item of getCalculations('/assets/calculations')">
+                {{ item }}
+              </li>
+            </ul> -->
+          </mat-card-footer>
         </mat-card>
       </div>
     </div>

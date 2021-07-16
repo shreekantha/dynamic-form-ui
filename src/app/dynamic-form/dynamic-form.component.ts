@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ServiceFormCategory } from './common/service-form-category';
@@ -20,7 +21,7 @@ export class DynamicFormComponent implements OnInit {
   listOfdependentFields: FormField<string>[] = [];
 
 
-  constructor(private formfieldService: FormfieldControlService) { }
+  constructor(private formfieldService: FormfieldControlService,private http:HttpClient) { }
 
   ngOnInit(): void {
     console.log('formData:', this.formData);
@@ -54,10 +55,9 @@ export class DynamicFormComponent implements OnInit {
     this.formData.svcDetails.forms.forEach(formField =>{
 
     if(formField.key === element ){
-    
-      if(formField.dependency.is === value && formField.dependency.notShow){
+          if(formField.dependency.is === value && formField.dependency.notShow){
         formField.dependency.notShow = false;
-console.log("coming in notshow false ")
+      console.log("coming in notshow false ")
        const serviceForm =  this.formData.svcDetails.forms.find(frm =>frm.key === element)
        console.log("serviceForm",serviceForm.key)
        serviceForm.groups
@@ -124,6 +124,26 @@ console.log("formm--->",this.form);
         });
       });
     // })
+  }
+
+  calc:any[]=[]
+
+   getCalculations=async(url:string)=>{
+    console.log("url",url);
+// return ["34 KB per request / 512 KB request increment = 0.06640625 request(s)",
+// "RoundUp (0.06640625) = 1 billable request(s)",
+// "HTTP API request cost (monthly): 0.00 USD"]
+const data= await this.getValue(url);
+console.log("data:",data);
+alert("kjfhkebieueheiub")
+return data as any[];
+  }
+
+  getValue=async(url:string)=>{
+   return await this.http.get(url).toPromise();
+      // console.log("data getValue:",data);
+      
+      // return data
   }
 
   onSubmit() {
