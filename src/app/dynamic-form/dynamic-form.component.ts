@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Calculation } from './common/calculation';
 import { ServiceForm } from './common/service-form';
 import { ServiceFormCategory } from './common/service-form-category';
 import { FormField } from './common/service-form-field';
@@ -20,7 +19,6 @@ export class DynamicFormComponent implements OnInit {
   size: number;
   payLoad = ' ';
   listOfdependentFields: FormField<string>[] = [];
-  calculation: Calculation;
 
   constructor(
     private formfieldService: FormfieldControlService,
@@ -28,7 +26,6 @@ export class DynamicFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('formData:', this.formData);
     this.form = this.formfieldService.toServiceFormGroup(this.formData);
   }
 
@@ -50,82 +47,60 @@ export class DynamicFormComponent implements OnInit {
   }
 
   formPrep(dependentKeys: any, value: any) {
-    dependentKeys.forEach((element) => {
+    dependentKeys.forEach((dependentKey) => {
       this.formData.svcDetails.forms.forEach((formField) => {
-        if (formField.key === element) {
+        if (formField.key === dependentKey) {
           if (
             formField.dependency.is === value &&
             formField.dependency.notShow
           ) {
             formField.dependency.notShow = false;
-            console.log('coming in notshow false ');
-            const serviceForm = this.formData.svcDetails.forms.find(
-              (frm) => frm.key === element
-            );
-            console.log('serviceForm', serviceForm.key);
-            serviceForm.groups.forEach((group) => {
-              console.log('coming in notshow false group:', group);
-
-              group.fields.forEach((field) => {
-                this.form.get(field.key).enable();
+            this.formData.svcDetails.forms
+              .find((form) => form.key === dependentKey)
+              .groups.forEach((group) => {
+                group.fields.forEach((field) => {
+                  this.form.get(field.key).enable();
+                });
               });
-            });
           } else {
             formField.dependency.notShow = true;
-            console.log('coming here');
-            const serviceForm = this.formData.svcDetails.forms.find(
-              (frm) => frm.key === element
-            );
-            console.log('serviceForm else', serviceForm.key);
-
-            serviceForm.groups.forEach((group) => {
-              console.log('form----->', group);
-              group.fields.forEach((field) => {
-                console.log('field.key', field.key);
-                this.form.get(field.key).disable();
+            this.formData.svcDetails.forms
+              .find((form) => form.key === dependentKey)
+              .groups.forEach((group) => {
+                group.fields.forEach((field) => {
+                  this.form.get(field.key).disable();
+                });
               });
-            });
           }
         }
       });
     });
-
-    console.log('formm--->', this.form);
   }
 
   private formFieldPrep(formKey: any, dependentKeys: any, value: any) {
     this.formData.svcDetails.forms
       .find((form) => form.key === formKey)
-      // this.formData.svcDetails.forms.forEach(ele => {
-      //   console.log("key ", ele.key)
-      //   ele.
-      .groups.forEach((element) => {
-        element.fields.forEach((elem) => {
+      .groups.forEach((group) => {
+        group.fields.forEach((controlField) => {
           dependentKeys.forEach((dependentKey) => {
-            if (dependentKey === elem.key) {
-              console.log(
-                'dependentKey.dependency.is === elem.value && ',
-                elem.dependency.is,
-                '===',
-                value
-              );
-              if (elem.dependency.is === value && elem.dependency.notShow) {
-                elem.dependency.notShow = false;
-                this.form.get(elem.key).enable();
+            if (dependentKey === controlField.key) {
+              if (
+                controlField.dependency.is === value &&
+                controlField.dependency.notShow
+              ) {
+                controlField.dependency.notShow = false;
+                this.form.get(controlField.key).enable();
               } else {
-                elem.dependency.notShow = true;
-                this.form.get(elem.key).disable();
+                controlField.dependency.notShow = true;
+                this.form.get(controlField.key).disable();
               }
             }
           });
         });
       });
-    // })
   }
 
-  calc: any[] = [];
-
-  getCalculations = async (serviceForm: ServiceForm, url: string) => {
+  async getCalculations(serviceForm: ServiceForm, url: string) {
     let templateForm = {};
     templateForm['templateKey'] = serviceForm.key;
     templateForm['svcId'] = this.formData.id;
@@ -138,11 +113,11 @@ export class DynamicFormComponent implements OnInit {
     // this.http.post(url+"/"+serviceForm.key,templateForm).subscribe((data) => {
     //   this.calculation = data as Calculation;
     // });
-    this.http.get(url).subscribe((data) => {
-      this.calculation = data as Calculation;
-    });
-    console.log('form:', templateForm);
-  };
+
+    // this.http.post(url+"/"+serviceForm.key,templateForm).pipe().toPromise();
+
+    return await this.http.get(url).pipe().toPromise();
+  }
 
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.getRawValue());

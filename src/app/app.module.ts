@@ -23,7 +23,6 @@ import { DynamicFormInputComponent } from './dynamic-form/dynamic-form-input/dyn
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ErrorMessageComponent } from './dynamic-form/error-message/error-message.component';
 import { HomeComponent } from './home/home.component';
-import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     DynamicFormComponent,
     DynamicFormMainComponentComponent,
     HomeComponent,
-    SideNavComponent,
     ErrorMessageComponent,
   ],
   imports: [

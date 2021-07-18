@@ -42,28 +42,20 @@
           <mat-card-footer>
             <mat-accordion togglePosition="before">
               <mat-expansion-panel
-                (opened)="getCalculations(serviceForm, '/assets/calc.json')"
+                (opened)="
+                  cal = getCalculations(serviceForm, '/assets/calc.json')
+                "
               >
                 <mat-expansion-panel-header>
                   <mat-panel-title>Show Calculations</mat-panel-title>
                 </mat-expansion-panel-header>
-                <ul
-                  *ngIf="
-                    calculation && calculation.templateKey === serviceForm.key
-                  "
-                >
-                  <li *ngFor="let item of calculation.values">
+                <ul *ngIf="cal">
+                  <li *ngFor="let item of (cal | async)?.values">
                     {{ item }}
                   </li>
                 </ul>
               </mat-expansion-panel>
             </mat-accordion>
-
-            <!-- <ul>
-              <li *ngFor="let item of getCalculations('/assets/calculations')">
-                {{ item }}
-              </li>
-            </ul> -->
           </mat-card-footer>
         </mat-card>
       </div>
