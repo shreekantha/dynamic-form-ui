@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DynamicFormMainComponentComponent } from './dynamic-form-main-component/dynamic-form-main-component.component';
+import { DynamicUiComponent } from './dynamic-ui/dynamic-ui.component';
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'configure',
-    component: DynamicFormMainComponentComponent,
+    component: DynamicUiComponent,
   },
 ];
 

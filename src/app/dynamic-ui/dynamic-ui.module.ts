@@ -2,7 +2,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -14,27 +14,21 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { DynamicUiModule } from './dynamic-ui/dynamic-ui.module';
-import { HomeComponent } from './home/home.component';
-
+import { DynamicFormInputComponent } from './dynamic-form/dynamic-form-input/dynamic-form-input.component';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { ErrorMessageComponent } from './dynamic-form/error-message/error-message.component';
+import { DynamicUiComponent } from './dynamic-ui.component';
 @NgModule({
   declarations: [
-    AppComponent,
-    // DynamicFormInputComponent,
-    // DynamicFormComponent,
-    // DynamicUi,
-    HomeComponent,
-    // ErrorMessageComponent,
+    DynamicUiComponent,
+    DynamicFormComponent,
+    DynamicFormInputComponent,
+    ErrorMessageComponent,
   ],
   imports: [
-    BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    DynamicUiModule,
     HttpClientModule,
     LayoutModule,
     MatCardModule,
@@ -52,6 +46,5 @@ import { HomeComponent } from './home/home.component';
     MatDividerModule,
   ],
   providers: [],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class DynamicUiModule {}

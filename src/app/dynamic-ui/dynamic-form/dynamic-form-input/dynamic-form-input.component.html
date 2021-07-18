@@ -18,19 +18,7 @@
               (form.get(input.key).dirty || form.get(input.key).touched)
             "
           >
-            <!-- <small style="color: red" *ngIf="form.get(input.key).errors.required">
-            {{ input.label }} is Required
-          </small>
-          <small style="color: red" *ngIf="form.get(input.key).errors.minlength">
-            {{ input.label }} must be minmum 10 characters.
-          </small>
-          <small style="color: red" *ngIf="form.get(input.key).errors.maxlength">
-            {{ input.label }} must be maximun 11 characters.
-          </small> -->
-            <app-error-message
-              [input]="input"
-              [form]="form"
-            ></app-error-message>
+            <error-message [input]="input" [form]="form"></error-message>
           </mat-error>
         </mat-form-field>
       </div>
@@ -55,11 +43,14 @@
               {{ opt.value }}
             </mat-option>
           </mat-select>
-          <div *ngIf="form.get(input.key).dirty || form.get(input.key).touched">
-            <small style="color: red" *ngIf="!form.get(input.key).valid">
-              {{ input.label }} is Required
-            </small>
-          </div>
+          <mat-error
+            *ngIf="
+              form.get(input.key).invalid &&
+              (form.get(input.key).dirty || form.get(input.key).touched)
+            "
+          >
+            <error-message [input]="input" [form]="form"></error-message>
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -84,7 +75,6 @@
 
       <div *ngSwitchCase="'radio'">
         <mat-radio-group *ngIf="!input.dependency.notShow">
-          <!-- {{input | json}} -->
           <mat-radio-group [formControlName]="input.key">
             <mat-radio-button
               *ngFor="let opt of input.options"
