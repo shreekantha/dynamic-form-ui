@@ -48,29 +48,22 @@ export class DynamicFormComponent implements OnInit {
 
   formPrep(dependentKeys: any, value: any) {
     dependentKeys.forEach((dependentKey) => {
-      this.formData.svcDetails.forms.forEach((formField) => {
-        if (formField.key === dependentKey) {
-          if (
-            formField.dependency.is === value &&
-            formField.dependency.notShow
-          ) {
-            formField.dependency.notShow = false;
-            this.formData.svcDetails.forms
-              .find((form) => form.key === dependentKey)
-              .groups.forEach((group) => {
-                group.fields.forEach((field) => {
-                  this.form.get(field.key).enable();
-                });
+      this.formData.svcDetails.forms.forEach((form) => {
+        if (form.key === dependentKey) {
+          if (form.dependency.is === value && !form.visible) {
+            form.visible = true;
+            form.groups.forEach((group) => {
+              group.fields.forEach((field) => {
+                this.form.get(field.key).enable();
               });
+            });
           } else {
-            formField.dependency.notShow = true;
-            this.formData.svcDetails.forms
-              .find((form) => form.key === dependentKey)
-              .groups.forEach((group) => {
-                group.fields.forEach((field) => {
-                  this.form.get(field.key).disable();
-                });
+            form.visible = false;
+            form.groups.forEach((group) => {
+              group.fields.forEach((field) => {
+                this.form.get(field.key).disable();
               });
+            });
           }
         }
       });
@@ -86,12 +79,12 @@ export class DynamicFormComponent implements OnInit {
             if (dependentKey === controlField.key) {
               if (
                 controlField.dependency.is === value &&
-                controlField.dependency.notShow
+                !controlField.visible
               ) {
-                controlField.dependency.notShow = false;
+                controlField.visible = true;
                 this.form.get(controlField.key).enable();
               } else {
-                controlField.dependency.notShow = true;
+                controlField.visible = false;
                 this.form.get(controlField.key).disable();
               }
             }

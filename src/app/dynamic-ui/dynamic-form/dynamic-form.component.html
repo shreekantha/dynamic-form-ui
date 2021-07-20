@@ -13,7 +13,7 @@
         *ngFor="let serviceForm of formData.svcDetails.forms"
         class="form-group"
       >
-        <mat-card class="mat-card" *ngIf="!serviceForm.dependency.notShow">
+        <mat-card class="mat-card" *ngIf="serviceForm.visible">
           <mat-card-header>
             <mat-card-title>{{ serviceForm.name }}</mat-card-title>
             <mat-card-subtitle>{{ serviceForm.description }}</mat-card-subtitle>
@@ -39,7 +39,7 @@
             </div>
             <!-- </div> -->
           </mat-card-content>
-          <mat-card-footer>
+          <mat-card-footer *ngIf="serviceForm.showCalcs">
             <mat-accordion togglePosition="before">
               <mat-expansion-panel
                 (opened)="
@@ -75,7 +75,7 @@
           type="submit"
           [disabled]="form.invalid"
         >
-          Create Estimate
+          Add to Estimate
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@
   <div [ngSwitch]="input.controlType">
     <div class="abc">
       <div *ngSwitchCase="'textbox'">
-        <mat-form-field class="full-width" *ngIf="!input.dependency.notShow">
+        <mat-form-field class="full-width" *ngIf="input.visible">
           <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
           <input
             matInput
@@ -24,7 +24,7 @@
       </div>
 
       <div *ngSwitchCase="'dropdown'">
-        <mat-form-field class="full-width" *ngIf="!input.dependency.notShow">
+        <mat-form-field class="full-width" *ngIf="input.visible">
           <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
           <mat-select
             [id]="input.key"
@@ -74,7 +74,7 @@
       </div>
 
       <div *ngSwitchCase="'radio'">
-        <mat-radio-group *ngIf="!input.dependency.notShow">
+        <mat-radio-group *ngIf="input.visible">
           <mat-radio-group [formControlName]="input.key">
             <mat-radio-button
               *ngFor="let opt of input.options"

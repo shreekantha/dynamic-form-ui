@@ -6,8 +6,9 @@
     "forms": [
       {
         "key": "template",
-        "name": "template Database Storage",
         "description": "",
+        "visible": true,
+        "showCalcs": false,
         "groups": [
           {
             "order": 1,
@@ -15,34 +16,37 @@
               {
                 "controlType": "radio",
                 "key": "templateOne",
-                "label": "Frequency",
                 "type": "radio",
                 "order": 2,
-                "dependency": {},
+                "visible": true,
                 "dependents": ["mysql", "aurora"],
                 "dependentType": "FORM",
                 "options": [
-                  { "key": "sql", "value": "mysql", "checked": true },
+                  {
+                    "key": "sql",
+                    "value": "MySql Compatible Instance",
+                    "checked": true
+                  },
                   {
                     "key": "au",
-                    "value": "mysql-server-less",
+                    "value": "MySql Server-Less",
                     "checked": false
                   }
                 ]
               }
             ]
           }
-        ],
-        "dependency": {}
+        ]
       },
       {
         "key": "mysql",
         "name": "MySQL Compatible instances",
         "description": "",
+        "visible": false,
+        "showCalcs": true,
         "dependency": {
           "on": "templateOne",
-          "is": "sql",
-          "notShow": true
+          "is": "sql"
         },
         "groups": [
           {
@@ -53,9 +57,9 @@
                 "label": "Storage amount",
                 "controlType": "textbox",
                 "required": true,
-                "type": "textbox",
+                "type": "text",
                 "order": 1,
-                "dependency": {},
+                "visible": true,
                 "validator": {
                   "required": true,
                   "minLength": 10,
@@ -67,12 +71,12 @@
                 "key": "frequency",
                 "label": "Frequency",
                 "options": [
-                  { "key": "perDay", "value": "Per Day" },
+                  { "key": "perDay", "value": "Per Day", "default": true },
                   { "key": "perWeek", "value": "Per Week" },
                   { "key": "perMonth", "value": "Per Month" }
                 ],
                 "order": 2,
-                "dependency": {},
+                "visible": true,
                 "dependents": ["numberofreads"],
                 "dependentType": "CONTROL",
                 "validator": {
@@ -90,14 +94,11 @@
                 "controlType": "textbox",
                 "required": true,
                 "order": 1,
-                "type": "textbox",
+                "type": "text",
+                "visible": false,
                 "dependency": {
                   "on": "frequency",
-                  "is": "perWeek",
-                  "notShow": true,
-                  "validator": {
-                    "required": true
-                  }
+                  "is": "perWeek"
                 }
               }
             ]
@@ -109,10 +110,9 @@
                 "key": "numberofwrites",
                 "label": "Number of writes per second",
                 "controlType": "textbox",
-                "required": true,
                 "order": 1,
-                "type": "textbox",
-                "dependency": {},
+                "type": "text",
+                "visible": true,
                 "validator": {
                   "required": true,
                   "minLength": 10,
@@ -133,7 +133,7 @@
                   { "key": "onDemand", "value": "OnDemand" }
                 ],
                 "order": 1,
-                "dependency": {},
+                "visible": true,
                 "dependents": ["term", "purchaseoption", "auroraCapacity"],
                 "dependentType": "CONTROL",
                 "validator": {
@@ -154,13 +154,13 @@
                   { "key": "3yr", "value": "3yr" }
                 ],
                 "order": 1,
+                "visible": false,
                 "validator": {
                   "required": true
                 },
                 "dependency": {
                   "on": "pricingmodel",
-                  "is": "onDemand",
-                  "notShow": true
+                  "is": "onDemand"
                 }
               }
             ]
@@ -178,13 +178,13 @@
                   { "key": "noupfront", "value": "No upfront" }
                 ],
                 "order": 1,
+                "visible": false,
                 "validator": {
                   "required": true
                 },
                 "dependency": {
                   "on": "pricingmodel",
-                  "is": "reserved",
-                  "notShow": true
+                  "is": "reserved"
                 }
               }
             ]
@@ -197,6 +197,7 @@
                 "key": "auroraCapacity",
                 "label": "Number of Aurora Capacity Units (ACUs)",
                 "order": 1,
+                "visible": false,
                 "validator": {
                   "required": true,
                   "minLength": 10,
@@ -204,8 +205,7 @@
                 },
                 "dependency": {
                   "on": "pricingmodel",
-                  "is": "reserved",
-                  "notShow": true
+                  "is": "reserved"
                 }
               }
             ]
@@ -216,10 +216,11 @@
         "key": "aurora",
         "name": "MySql Serverless Database Storage",
         "description": "",
+        "visible": false,
+        "showCalcs": true,
         "dependency": {
           "on": "templateOne",
-          "is": "au",
-          "notShow": true
+          "is": "au"
         },
         "groups": [
           {
@@ -232,7 +233,7 @@
                 "required": true,
                 "type": "textbox",
                 "order": 1,
-                "dependency": {},
+                "visible": true,
                 "validator": {
                   "required": true,
                   "minLength": 10,
@@ -250,8 +251,8 @@
                 "controlType": "textbox",
                 "required": true,
                 "order": 1,
-                "type": "textbox",
-                "dependency": {},
+                "type": "text",
+                "visible": true,
                 "validator": {
                   "required": true,
                   "minLength": 10,
@@ -270,7 +271,7 @@
                 "required": true,
                 "order": 1,
                 "type": "textbox",
-                "dependency": {},
+                "visible": true,
                 "validator": {
                   "required": true,
                   "minLength": 10,
@@ -292,7 +293,7 @@
                   { "key": "3yr", "value": "3yr" }
                 ],
                 "order": 1,
-                "dependency": {},
+                "visible": true,
                 "validator": {
                   "required": true
                 }
@@ -305,7 +306,8 @@
         "key": "database-storage",
         "name": "Database Storage",
         "description": "",
-        "dependency": {},
+        "visible": true,
+        "showCalcs": true,
         "groups": [
           {
             "order": 1,
@@ -314,10 +316,9 @@
                 "key": "storageamount12",
                 "label": "Storage amount",
                 "controlType": "textbox",
-                "required": true,
                 "type": "number",
                 "order": 1,
-                "dependency": {},
+                "visible": true,
                 "validator": {
                   "required": true,
                   "minLength": 10,
@@ -334,8 +335,7 @@
                   { "key": "perMonth", "value": "Per Month" }
                 ],
                 "order": 2,
-                "dependency": {},
-
+                "visible": true,
                 "validator": {
                   "required": true
                 }
@@ -349,10 +349,9 @@
                 "key": "numberofreads12",
                 "label": "Number of reads per second",
                 "controlType": "textbox",
-
                 "order": 1,
                 "type": "number",
-
+                "visible": true,
                 "validator": {
                   "required": true
                 }
@@ -366,10 +365,9 @@
                 "key": "numberofwrites12",
                 "label": "Number of writes per second",
                 "controlType": "textbox",
-                "required": true,
                 "order": 1,
                 "type": "number",
-                "dependency": {},
+                "visible": true,
                 "validator": {
                   "required": true,
                   "minLength": 10,
