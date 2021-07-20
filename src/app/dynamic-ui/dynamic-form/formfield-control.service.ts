@@ -18,24 +18,35 @@ export class FormfieldControlService {
 
     category.svcDetails.forms.forEach((form) => {
       form.groups.forEach((formgroup) =>
-        formgroup.fields.forEach((input) => {
-          if (input.validator) {
-            let validator: ValidatorFn[] = input.validator.required
+        formgroup.fields.forEach((field) => {
+          let defaultValue;
+          if (field.options) {
+            let opt = field.options.find((op) => op.default == true);
+            if (opt) defaultValue = opt['key'];
+            // console.log(opt.key, ':', defaultValue);
+          }
+          if (field.validator) {
+            let validator: ValidatorFn[] = field.validator.required
               ? [Validators.required]
               : [];
-            if (input.validator.minLength) {
-              validator.push(Validators.minLength(input.validator.minLength));
+            if (field.validator.minLength) {
+              validator.push(Validators.minLength(field.validator.minLength));
             }
-            if (input.validator.maxLength) {
-              validator.push(Validators.maxLength(input.validator.maxLength));
+            if (field.validator.maxLength) {
+              validator.push(Validators.maxLength(field.validator.maxLength));
             }
-            if (input.validator.pattern) {
-              validator.push(Validators.pattern(input.validator.pattern));
+            if (field.validator.pattern) {
+              validator.push(Validators.pattern(field.validator.pattern));
             }
 
-            group[input.key] = new FormControl(input.value || '', validator);
+            group[field.key] = new FormControl(
+              field.value || defaultValue || '',
+              validator
+            );
           } else {
-            group[input.key] = new FormControl(input.value || '');
+            group[field.key] = new FormControl(
+              field.value || defaultValue || ''
+            );
           }
         })
       );

@@ -25,12 +25,12 @@
                   {
                     "key": "sql",
                     "value": "MySql Compatible Instance",
-                    "checked": true
+                    "default": true
                   },
                   {
                     "key": "au",
                     "value": "MySql Server-Less",
-                    "checked": false
+                    "default": false
                   }
                 ]
               }

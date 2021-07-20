@@ -81,6 +81,7 @@ export class DynamicFormComponent implements OnInit {
                 controlField.dependency.is === value &&
                 !controlField.visible
               ) {
+                // console.log('oprions:', field.options);
                 controlField.visible = true;
                 this.form.get(controlField.key).enable();
               } else {
@@ -93,16 +94,20 @@ export class DynamicFormComponent implements OnInit {
       });
   }
 
-  async getCalculations(serviceForm: ServiceForm, url: string) {
-    let templateForm = {};
-    templateForm['templateKey'] = serviceForm.key;
-    templateForm['svcId'] = this.formData.id;
-    serviceForm.groups.map((g) =>
-      g.fields.map((f) => {
-        templateForm[f.key] = this.form.get(f.key).value;
-      })
-    );
+  async getCalculations(serviceForm1: ServiceForm, url: string) {
+    let templateForms = [];
+    //templateForm['svcId'] = this.formData.id;
+    this.formData.svcDetails.forms.map((serviceForm) => {
+      let templateForm = {};
 
+      serviceForm.groups.map((g) =>
+        g.fields.map((f) => {
+          templateForm[f.key] = this.form.get(f.key).value;
+        })
+      );
+      templateForms.push({ id: serviceForm.key, dimensions: templateForm });
+    });
+    console.log('template forms:', templateForms);
     // this.http.post(url+"/"+serviceForm.key,templateForm).subscribe((data) => {
     //   this.calculation = data as Calculation;
     // });

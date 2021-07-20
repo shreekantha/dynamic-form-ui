@@ -13,7 +13,7 @@ export class FormField<T> {
   dependency: Dependency = new Dependency();
   dependents: string[];
   dependentType: string;
-  options: { key: string; value: string; checked: boolean }[];
+  options: { key: string; value: string; default: boolean }[];
 
   // constructor(
   //   options: {
