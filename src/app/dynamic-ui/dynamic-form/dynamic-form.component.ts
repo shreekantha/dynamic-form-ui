@@ -108,11 +108,8 @@ export class DynamicFormComponent implements OnInit {
       templateForms.push({ id: serviceForm.key, dimensions: templateForm });
     });
     console.log('template forms:', templateForms);
-    // this.http.post(url+"/"+serviceForm.key,templateForm).subscribe((data) => {
-    //   this.calculation = data as Calculation;
-    // });
 
-    // this.http.post(url+"/"+serviceForm.key,templateForm).pipe().toPromise();
+    // this.http.post(url+"/"+serviceForm.key,templateForms).pipe().toPromise();
 
     return await this.http.get(url).pipe().toPromise();
   }
