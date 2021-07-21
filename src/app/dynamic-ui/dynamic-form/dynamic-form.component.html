@@ -23,18 +23,29 @@
             <!-- <div class="container"> -->
             <div
               class="flex-container"
-              fxLayout="row"
-              fxLayout.xs="column"
               *ngFor="let group of serviceForm.groups"
             >
-              <div fxFlex="1 1 auto" *ngFor="let formField of group.fields">
-                <FormInput
-                  [group]="group"
-                  [serviceForm]="serviceForm"
-                  [input]="formField"
-                  [form]="form"
-                  (dependencyFieldData)="onChange($event)"
-                ></FormInput>
+              <div fxLayout="row" fxLayout.xs="column">
+                <div fxFlex="1 1 auto" style="margin-bottom: 5px">
+                  <div class="field">
+                    <h2 style="margin: 0">{{ group.name }}</h2>
+                  </div>
+                  <div class="field">
+                    <h3 style="margin: 0">{{ group.description }}</h3>
+                  </div>
+                </div>
+              </div>
+
+              <div fxLayout="row" fxLayout.xs="column">
+                <div fxFlex="1 1" *ngFor="let formField of group.fields">
+                  <FormInput
+                    [group]="group"
+                    [serviceForm]="serviceForm"
+                    [input]="formField"
+                    [form]="form"
+                    (dependencyFieldData)="onChange($event)"
+                  ></FormInput>
+                </div>
               </div>
             </div>
             <!-- </div> -->
@@ -49,8 +60,8 @@
                 <mat-expansion-panel-header>
                   <mat-panel-title>Show Calculations</mat-panel-title>
                 </mat-expansion-panel-header>
-                <ul *ngIf="cal">
-                  <li *ngFor="let item of (cal | async)?.values">
+                <ul *ngIf="cal && (cal | async)?.key === serviceForm.key">
+                  <li *ngFor="let item of (cal | async)?.returnStatements">
                     {{ item }}
                   </li>
                 </ul>
@@ -60,8 +71,24 @@
         </mat-card>
       </div>
     </div>
-    <div fxLayout="row" style="margin-top: 60px">
-      <mat-divider></mat-divider>
+
+    <div
+      *ngIf="calculations"
+      class="flex-container"
+      fxLayout="column"
+      style="margin-top: 60px"
+    >
+      <p>
+        <mat-divider></mat-divider>
+      </p>
+      <p *ngFor="let calc of calculations.templateWiseCalculation">
+        <label for="" style="float: left"> {{ calc.name }} </label>
+        <label for="" style="float: right"> {{ calc.value }} </label>
+      </p>
+      <p style="font-weight: bold">
+        <label for="" style="float: left"> {{ calculations.name }} </label>
+        <label for="" style="float: right"> {{ calculations.value }} </label>
+      </p>
     </div>
 
     <div fxLayout="row" class="row" style="float: right; margin-top: 10px">

@@ -8,7 +8,7 @@
     margin-right:5px;
   }
 
-  .abc, .mat-form-field {
+  .field, .mat-form-field .mat-label {
     margin-left: 10px !important;
     margin-right: 5px !important;
   }

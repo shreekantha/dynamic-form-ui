@@ -12,6 +12,7 @@
         "groups": [
           {
             "order": 1,
+
             "fields": [
               {
                 "controlType": "radio",
@@ -51,6 +52,8 @@
         "groups": [
           {
             "order": 1,
+            "name": "Storage",
+            "description": "Amazon Aurora MySQL Compatible relational database is built for the cloud",
             "fields": [
               {
                 "key": "storageamount",

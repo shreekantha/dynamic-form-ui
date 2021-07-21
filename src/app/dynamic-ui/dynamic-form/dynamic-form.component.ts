@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Calculations } from './common/calculation';
 import { ServiceForm } from './common/service-form';
 import { ServiceFormCategory } from './common/service-form-category';
 import { FormField } from './common/service-form-field';
@@ -19,7 +20,7 @@ export class DynamicFormComponent implements OnInit {
   size: number;
   payLoad = ' ';
   listOfdependentFields: FormField<string>[] = [];
-
+  calculations: Calculations;
   constructor(
     private formfieldService: FormfieldControlService,
     private http: HttpClient
@@ -109,9 +110,15 @@ export class DynamicFormComponent implements OnInit {
     });
     console.log('template forms:', templateForms);
 
-    // this.http.post(url+"/"+serviceForm.key,templateForms).pipe().toPromise();
+    //return await this.http.post(url+"/"+serviceForm.key,templateForms).pipe().toPromise();
 
-    return await this.http.get(url).pipe().toPromise();
+    const calcs = await this.http.get<Calculations>(url).pipe().toPromise();
+    const calc = calcs.templateWiseCalculation.find(
+      (tc) => tc.key === serviceForm1.key
+    );
+    this.calculations = calcs;
+    console.log('calcs=>', this.calculations, ':calc=>', calc);
+    return calc;
   }
 
   onSubmit() {

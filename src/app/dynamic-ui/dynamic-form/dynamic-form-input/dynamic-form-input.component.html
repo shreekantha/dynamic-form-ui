@@ -1,9 +1,18 @@
 <div id="form" [formGroup]="form">
   <div [ngSwitch]="input.controlType">
-    <div class="abc">
+    <div class="field">
       <div *ngSwitchCase="'textbox'">
-        <mat-form-field class="full-width" *ngIf="input.visible">
-          <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
+        <mat-label
+          *ngIf="input.visible"
+          class="full-width"
+          [attr.for]="input.key"
+          >{{ input.label }}</mat-label
+        >
+        <mat-form-field
+          class="full-width"
+          *ngIf="input.visible"
+          appearance="outline"
+        >
           <input
             matInput
             class="form-control"
@@ -24,8 +33,18 @@
       </div>
 
       <div *ngSwitchCase="'dropdown'">
-        <mat-form-field class="full-width" *ngIf="input.visible">
-          <mat-label [attr.for]="input.key">{{ input.label }}</mat-label>
+        <mat-label
+          *ngIf="input.visible"
+          class="full-width"
+          [attr.for]="input.key"
+          >{{ input.label }}</mat-label
+        >
+        <label for=""> {{ input.description }} </label>
+        <mat-form-field
+          class="full-width"
+          *ngIf="input.visible"
+          appearance="outline"
+        >
           <mat-select
             [id]="input.key"
             [formControlName]="input.key"

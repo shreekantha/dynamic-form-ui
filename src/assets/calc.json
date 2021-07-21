@@ -1,8 +1,25 @@
 {
-  "templateKey": "2",
-  "values": [
-    "34 KB per request / 512 KB request increment = 0.06640625 request(s)",
-    "RoundUp (0.06640625) = 1 billable request(s)",
-    "HTTP API request cost (monthly): 0.00 USD"
-  ]
+  "templateWiseCalculation": [
+    {
+      "returnStatements": [
+        "dimension Requests is assigned with 1",
+        "dimension RequestSize is assigned with 2",
+        "dimension RequestUnit is assigned with 1000000 millions",
+        "dimension PerPeriod is assigned with 730 per hour",
+        "dimension RequestSizeUnit is assigned with 1 kb",
+        "dimension TotalRequests is assigned with  Requests * RequestUnit",
+        "TotalRequests=1000000",
+        "dimension TotalRequest is assigned with Requests * RequestUnit * PerPeriod * ((((RequestSize * RequestSizeUnit)-1)/512)+1)",
+        "TotalRequest=730000000",
+        "Total price for  is 9.542999008999999",
+        "Evaluated Price for HTTP APIs Template is 9.542999008999999"
+      ],
+      "serviceTemplateName": "HTTP APIs Template",
+      "key": "mysql",
+      "name": "HTTP APIs Template cost",
+      "value": 9.542999008999999
+    }
+  ],
+  "name": "Total cost",
+  "value": 9.542999008999999
 }
