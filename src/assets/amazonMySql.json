@@ -72,7 +72,7 @@
               {
                 "controlType": "dropdown",
                 "key": "frequency",
-                "label": "Frequency",
+                "label": "",
                 "options": [
                   { "key": "perDay", "value": "Per Day", "default": true },
                   { "key": "perWeek", "value": "Per Week" },

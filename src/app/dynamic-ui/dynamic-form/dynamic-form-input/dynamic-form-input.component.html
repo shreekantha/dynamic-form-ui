@@ -33,13 +33,20 @@
       </div>
 
       <div *ngSwitchCase="'dropdown'">
-        <mat-label
-          *ngIf="input.visible"
-          class="full-width"
-          [attr.for]="input.key"
-          >{{ input.label }}</mat-label
-        >
-        <label for=""> {{ input.description }} </label>
+        <div>
+          <mat-label
+            *ngIf="input.visible"
+            class="full-width"
+            [attr.for]="input.key"
+            >{{ input.label }} &nbsp;</mat-label
+          >
+        </div>
+        <div>
+          <mat-hint class="full-width" align="end"
+            >aftr nm ghtyujik olikthn</mat-hint
+          >
+        </div>
+
         <mat-form-field
           class="full-width"
           *ngIf="input.visible"
