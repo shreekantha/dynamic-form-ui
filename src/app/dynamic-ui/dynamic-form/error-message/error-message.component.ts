@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormField } from '../common/service-form-field';
+import { DynamicFormField } from '../common/dynamic-form-field';
 
 @Component({
   selector: 'error-message',
@@ -8,7 +8,7 @@ import { FormField } from '../common/service-form-field';
   styleUrls: ['./error-message.component.css'],
 })
 export class ErrorMessageComponent implements OnInit {
-  @Input() input: FormField<string>;
+  @Input() input: DynamicFormField<string>;
   @Input() form: FormGroup;
 
   constructor() {}

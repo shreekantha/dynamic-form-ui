@@ -9,10 +9,7 @@
       </div>
     </div>
     <div class="container">
-      <div
-        *ngFor="let serviceForm of formData.svcDetails.forms"
-        class="form-group"
-      >
+      <div *ngFor="let serviceForm of formData.formGroups" class="form-group">
         <mat-card class="mat-card" *ngIf="serviceForm.visible">
           <mat-card-header>
             <mat-card-title>{{ serviceForm.name }}</mat-card-title>
@@ -23,7 +20,7 @@
             <!-- <div class="container"> -->
             <div
               class="flex-container"
-              *ngFor="let group of serviceForm.groups"
+              *ngFor="let group of serviceForm.fieldGroups"
             >
               <div fxLayout="row" fxLayout.xs="column">
                 <div fxFlex="1 1 auto" style="margin-bottom: 5px">

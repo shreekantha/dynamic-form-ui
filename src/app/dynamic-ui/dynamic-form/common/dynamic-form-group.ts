@@ -1,13 +1,13 @@
 import { Dependency } from './dependency';
-import { ServiceFormFieldGroup } from './service-form-field-group';
+import { DynamicFormFieldGroup } from './dynamic-form-field-group';
 
-export class ServiceForm {
+export class DynamicFormGroup {
   id: any;
   key: string;
   name: string;
   description: string;
   visible: boolean;
   showCalcs: boolean;
-  groups: ServiceFormFieldGroup[] = [new ServiceFormFieldGroup({})];
+  fieldGroups: DynamicFormFieldGroup[] = [new DynamicFormFieldGroup({})];
   dependency: Dependency = new Dependency();
 }

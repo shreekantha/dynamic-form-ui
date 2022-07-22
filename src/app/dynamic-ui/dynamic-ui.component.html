@@ -1,4 +1,5 @@
 <DynamicForm
   *ngIf="serviceFormCategory"
   [formData]="serviceFormCategory | async"
+  (handleSubmit)="onSubmit($event)"
 ></DynamicForm>

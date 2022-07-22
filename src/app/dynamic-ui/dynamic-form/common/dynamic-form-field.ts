@@ -1,7 +1,7 @@
 import { Dependency } from './dependency';
 import { Validator } from './validator';
 
-export class FormField<T> {
+export class DynamicFormField<T> {
   value: T;
   key: string;
   label: string;

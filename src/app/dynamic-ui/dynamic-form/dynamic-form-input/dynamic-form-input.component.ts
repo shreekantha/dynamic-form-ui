@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ServiceForm } from '../common/service-form';
-import { FormField } from '../common/service-form-field';
-import { ServiceFormFieldGroup } from '../common/service-form-field-group';
+import { DynamicFormField } from '../common/dynamic-form-field';
+import { DynamicFormFieldGroup } from '../common/dynamic-form-field-group';
+import { DynamicFormGroup } from '../common/dynamic-form-group';
 
 @Component({
   selector: 'FormInput',
@@ -10,13 +10,13 @@ import { ServiceFormFieldGroup } from '../common/service-form-field-group';
   styleUrls: ['./dynamic-form-input.component.css'],
 })
 export class DynamicFormInputComponent {
-  @Input() input: FormField<string>;
+  @Input() input: DynamicFormField<string>;
   @Input() form: FormGroup;
-  @Input() serviceForm: ServiceForm;
-  @Input() group: ServiceFormFieldGroup;
+  @Input() serviceForm: DynamicFormGroup;
+  @Input() group: DynamicFormFieldGroup;
   @Output() dependencyFieldData = new EventEmitter();
   dependent: any;
-  listOfdependentFields: FormField<string>[] = [];
+  listOfdependentFields: DynamicFormField<string>[] = [];
   displayThis = false;
   size: any;
   constructor() {
@@ -24,13 +24,12 @@ export class DynamicFormInputComponent {
   }
   get isValid() {
     return this.form.controls[this.input.key].valid;
-    return true;
+    // return true;
   }
 
   onChange(formKey, value, dependentKeys, dependentType) {
-    const data = { formKey, dependentKeys, value, dependentType }
-    console.log("data:=========",data)
+    const data = { formKey, dependentKeys, value, dependentType };
+    console.log('data:=========', data);
     this.dependencyFieldData.emit(data);
-  
   }
 }

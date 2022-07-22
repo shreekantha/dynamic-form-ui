@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { ServiceFormCategory } from './dynamic-form/common/service-form-category';
+import { DynamicForm } from './dynamic-form/common/dynamic-form';
 
 @Component({
   selector: 'dynamic-ui',
@@ -10,13 +10,17 @@ import { ServiceFormCategory } from './dynamic-form/common/service-form-category
   styleUrls: ['./dynamic-ui.component.css'],
 })
 export class DynamicUiComponent {
-  serviceFormCategory: Observable<ServiceFormCategory>;
+  serviceFormCategory: Observable<DynamicForm>;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) {
     const url = this.route.snapshot.queryParams['url'];
 
-    this.httpClient.get<ServiceFormCategory>(url).subscribe((data) => {
+    this.httpClient.get<DynamicForm>(url).subscribe((data) => {
       this.serviceFormCategory = of(data);
     });
+  }
+
+  onSubmit(data) {
+    console.log('final data: ', data);
   }
 }

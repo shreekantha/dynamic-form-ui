@@ -2,74 +2,77 @@
   "svcName": "Configure Amazon Athena",
   "svcCode": "1003",
   "description": "Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to manage, and you pay only for the queries that you run.",
-  "svcDetails": {
-    "forms": [
-      {
-        "key": "serviceSettings",
-        "name": "Service settings",
-        "description": "With Amazon Athena you only pay for the queries you run. To estimate your monthly cost, enter the total number of queries you expect to run in a day, week, or month and the amount of data scanned per query.",
-        "dependency": {},
-        "groups": [
-          {
-            "order": 1,
-            "fields": [
-              {
-                "controlType": "textbox",
-                "key": "totalnumber",
-                "label": "Total number of queries",
 
-                "type": "number",
-                "validator": {
-                  "required": true
-                },
-                "order": 1,
-                "dependency": {}
+  "formGroups": [
+    {
+      "key": "serviceSettings",
+      "name": "Service settings",
+      "description": "With Amazon Athena you only pay for the queries you run. To estimate your monthly cost, enter the total number of queries you expect to run in a day, week, or month and the amount of data scanned per query.",
+      "dependency": {},
+      "visible": true,
+      "fieldGroups": [
+        {
+          "order": 1,
+          "fields": [
+            {
+              "controlType": "textbox",
+              "key": "totalnumber",
+              "label": "Total number of queries",
+              "visible": true,
+              "type": "number",
+              "validator": {
+                "required": true
               },
-              {
-                "controlType": "dropdown",
-                "key": "frequency",
-                "label": "Frequency",
-                "options": [
-                  { "key": "perDay", "value": "Per Day" },
-                  { "key": "perWeek", "value": "Per Week" },
-                  { "key": "perMonth", "value": "Per Month" }
-                ],
-                "order": 2,
-                "dependency": {}
-              }
-            ]
-          },
-          {
-            "order": 2,
-            "fields": [
-              {
-                "controlType": "textbox",
-                "key": "dataamount",
-                "label": "Data amount scanned per query",
-                "validator": {
-                  "required": true
-                },
-                "type": "number",
-                "order": 1,
-                "dependency": {}
+              "order": 1,
+              "dependency": {}
+            },
+            {
+              "controlType": "dropdown",
+              "key": "frequency",
+              "label": "Frequency",
+              "visible": true,
+              "options": [
+                { "key": "perDay", "value": "Per Day" },
+                { "key": "perWeek", "value": "Per Week" },
+                { "key": "perMonth", "value": "Per Month" }
+              ],
+              "order": 2,
+              "dependency": {}
+            }
+          ]
+        },
+        {
+          "order": 2,
+          "fields": [
+            {
+              "controlType": "textbox",
+              "key": "dataamount",
+              "label": "Data amount scanned per query",
+              "visible": true,
+              "validator": {
+                "required": true
               },
+              "type": "number",
+              "order": 1,
+              "dependency": {}
+            },
 
-              {
-                "controlType": "dropdown",
-                "key": "size",
-                "label": "Size",
-                "options": [
-                  { "key": "mb", "value": "MB" },
-                  { "key": "gb", "value": "GB" },
-                  { "key": "tb", "value": "TB" }
-                ],
-                "order": 2,
-                "dependency": {}
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  }
+            {
+              "controlType": "dropdown",
+              "key": "size",
+              "label": "Size",
+              "visible": true,
+              "options": [
+                { "key": "mb", "value": "MB" },
+                { "key": "gb", "value": "GB" },
+                { "key": "tb", "value": "TB" }
+              ],
+              "order": 2,
+              "dependency": {}
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Calculations } from './common/calculation';
-import { ServiceForm } from './common/service-form';
-import { ServiceFormCategory } from './common/service-form-category';
-import { FormField } from './common/service-form-field';
+import { DynamicForm } from './common/dynamic-form';
+import { DynamicFormField } from './common/dynamic-form-field';
+import { DynamicFormGroup } from './common/dynamic-form-group';
 import { FormfieldControlService } from './formfield-control.service';
 
 @Component({
@@ -14,13 +14,14 @@ import { FormfieldControlService } from './formfield-control.service';
 })
 export class DynamicFormComponent implements OnInit {
   // @Input() formFields: FormField<string>[] = [];
-  @Input() formData: ServiceFormCategory;
+  @Input() formData: DynamicForm;
   form: FormGroup;
   displayThis: boolean;
   size: number;
   payLoad = ' ';
-  listOfdependentFields: FormField<string>[] = [];
+  listOfdependentFields: DynamicFormField<string>[] = [];
   calculations: Calculations;
+  @Output() handleSubmit = new EventEmitter();
   constructor(
     private formfieldService: FormfieldControlService,
     private http: HttpClient
@@ -49,18 +50,18 @@ export class DynamicFormComponent implements OnInit {
 
   formPrep(dependentKeys: any, value: any) {
     dependentKeys.forEach((dependentKey) => {
-      this.formData.svcDetails.forms.forEach((form) => {
+      this.formData.formGroups.forEach((form) => {
         if (form.key === dependentKey) {
           if (form.dependency.is === value && !form.visible) {
             form.visible = true;
-            form.groups.forEach((group) => {
+            form.fieldGroups.forEach((group) => {
               group.fields.forEach((field) => {
                 this.form.get(field.key).enable();
               });
             });
           } else {
             form.visible = false;
-            form.groups.forEach((group) => {
+            form.fieldGroups.forEach((group) => {
               group.fields.forEach((field) => {
                 this.form.get(field.key).disable();
               });
@@ -72,9 +73,9 @@ export class DynamicFormComponent implements OnInit {
   }
 
   private formFieldPrep(formKey: any, dependentKeys: any, value: any) {
-    this.formData.svcDetails.forms
+    this.formData.formGroups
       .find((form) => form.key === formKey)
-      .groups.forEach((group) => {
+      .fieldGroups.forEach((group) => {
         group.fields.forEach((controlField) => {
           dependentKeys.forEach((dependentKey) => {
             if (dependentKey === controlField.key) {
@@ -95,13 +96,13 @@ export class DynamicFormComponent implements OnInit {
       });
   }
 
-  async getCalculations(serviceForm1: ServiceForm, url: string) {
+  async getCalculations(serviceForm1: DynamicFormGroup, url: string) {
     let templateForms = [];
     //templateForm['svcId'] = this.formData.id;
-    this.formData.svcDetails.forms.map((serviceForm) => {
+    this.formData.formGroups.map((serviceForm) => {
       let templateForm = {};
 
-      serviceForm.groups.map((g) =>
+      serviceForm.fieldGroups.map((g) =>
         g.fields.map((f) => {
           templateForm[f.key] = this.form.get(f.key).value;
         })
@@ -123,6 +124,8 @@ export class DynamicFormComponent implements OnInit {
 
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.getRawValue());
+    console.log('payload: ', this.payLoad);
+    this.handleSubmit.emit(this.payLoad);
     this.form.reset();
   }
 }

@@ -5,7 +5,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { ServiceFormCategory } from './common/service-form-category';
+import { DynamicForm } from './common/dynamic-form';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +13,11 @@ import { ServiceFormCategory } from './common/service-form-category';
 export class FormfieldControlService {
   constructor() {}
 
-  toServiceFormGroup(category: ServiceFormCategory): FormGroup {
+  toServiceFormGroup(category: DynamicForm): FormGroup {
     const group: any = {};
 
-    category.svcDetails.forms.forEach((form) => {
-      form.groups.forEach((formgroup) =>
+    category.formGroups.forEach((form) => {
+      form.fieldGroups.forEach((formgroup) =>
         formgroup.fields.forEach((field) => {
           let defaultValue;
           if (field.options) {
