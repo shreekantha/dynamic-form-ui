@@ -10,17 +10,17 @@ import { DynamicForm } from './dynamic-form/common/dynamic-form';
   styleUrls: ['./dynamic-ui.component.css'],
 })
 export class DynamicUiComponent {
-  serviceFormCategory: Observable<DynamicForm>;
+  formData: Observable<DynamicForm>;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute) {
     const url = this.route.snapshot.queryParams['url'];
 
     this.httpClient.get<DynamicForm>(url).subscribe((data) => {
-      this.serviceFormCategory = of(data);
+      this.formData = of(data);
     });
   }
 
-  onSubmit(data) {
-    console.log('final data: ', data);
+  onSubmit(formData) {
+    console.log('final data: ', formData);
   }
 }
