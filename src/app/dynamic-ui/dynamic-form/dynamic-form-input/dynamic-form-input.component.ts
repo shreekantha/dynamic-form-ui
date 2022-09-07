@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { DynamicFormField } from '../common/dynamic-form-field';
 import { DynamicFormFieldGroup } from '../common/dynamic-form-field-group';
 import { DynamicFormGroup } from '../common/dynamic-form-group';
@@ -11,7 +11,7 @@ import { DynamicFormGroup } from '../common/dynamic-form-group';
 })
 export class DynamicFormInputComponent {
   @Input() input: DynamicFormField<string>;
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
   @Input() serviceForm: DynamicFormGroup;
   @Input() group: DynamicFormFieldGroup;
   @Output() dependencyFieldData = new EventEmitter();

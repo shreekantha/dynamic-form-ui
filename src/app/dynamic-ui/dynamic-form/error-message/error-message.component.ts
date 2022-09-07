@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { DynamicFormField } from '../common/dynamic-form-field';
 
 @Component({
@@ -9,7 +9,7 @@ import { DynamicFormField } from '../common/dynamic-form-field';
 })
 export class ErrorMessageComponent implements OnInit {
   @Input() input: DynamicFormField<string>;
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
 
   constructor() {}
 

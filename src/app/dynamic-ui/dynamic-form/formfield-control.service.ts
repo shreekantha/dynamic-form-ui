@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -13,7 +13,7 @@ import { DynamicForm } from './common/dynamic-form';
 export class FormfieldControlService {
   constructor() {}
 
-  toServiceFormGroup(category: DynamicForm): FormGroup {
+  toServiceFormGroup(category: DynamicForm): UntypedFormGroup {
     const group: any = {};
 
     category.formGroups.forEach((form) => {
@@ -39,12 +39,12 @@ export class FormfieldControlService {
               validator.push(Validators.pattern(field.validator.pattern));
             }
 
-            group[field.key] = new FormControl(
+            group[field.key] = new UntypedFormControl(
               field.value || defaultValue || '',
               validator
             );
           } else {
-            group[field.key] = new FormControl(
+            group[field.key] = new UntypedFormControl(
               field.value || defaultValue || ''
             );
           }
@@ -52,6 +52,6 @@ export class FormfieldControlService {
       );
     });
 
-    return new FormGroup(group);
+    return new UntypedFormGroup(group);
   }
 }

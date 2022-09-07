@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Calculations } from './common/calculation';
 import { DynamicForm } from './common/dynamic-form';
 import { DynamicFormField } from './common/dynamic-form-field';
@@ -15,7 +15,7 @@ import { FormfieldControlService } from './formfield-control.service';
 export class DynamicFormComponent implements OnInit {
   // @Input() formFields: FormField<string>[] = [];
   @Input() formData: DynamicForm;
-  form: FormGroup;
+  form: UntypedFormGroup;
   displayThis: boolean;
   size: number;
   payLoad = ' ';
