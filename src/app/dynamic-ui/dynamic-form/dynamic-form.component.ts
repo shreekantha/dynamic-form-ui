@@ -22,6 +22,7 @@ export class DynamicFormComponent implements OnInit {
   listOfdependentFields: DynamicFormField<string>[] = [];
   calculations: Calculations;
   @Output() handleSubmit = new EventEmitter();
+
   constructor(
     private formfieldService: FormfieldControlService,
     private http: HttpClient
@@ -41,7 +42,7 @@ export class DynamicFormComponent implements OnInit {
           this.formFieldPrep(formKey, dependentKeys, value);
           break;
 
-        case 'FORM':
+        case 'FORM_GROUP':
           this.formPrep(dependentKeys, value);
           break;
       }
@@ -96,31 +97,7 @@ export class DynamicFormComponent implements OnInit {
       });
   }
 
-  async getCalculations(serviceForm1: DynamicFormGroup, url: string) {
-    let templateForms = [];
-    //templateForm['svcId'] = this.formData.id;
-    this.formData.formGroups.map((serviceForm) => {
-      let templateForm = {};
-
-      serviceForm.fieldGroups.map((g) =>
-        g.fields.map((f) => {
-          templateForm[f.key] = this.form.get(f.key).value;
-        })
-      );
-      templateForms.push({ id: serviceForm.key, dimensions: templateForm });
-    });
-    console.log('template forms:', templateForms);
-
-    //return await this.http.post(url+"/"+serviceForm.key,templateForms).pipe().toPromise();
-
-    const calcs = await this.http.get<Calculations>(url).pipe().toPromise();
-    const calc = calcs.templateWiseCalculation.find(
-      (tc) => tc.key === serviceForm1.key
-    );
-    this.calculations = calcs;
-    console.log('calcs=>', this.calculations, ':calc=>', calc);
-    return calc;
-  }
+  
 
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.getRawValue());

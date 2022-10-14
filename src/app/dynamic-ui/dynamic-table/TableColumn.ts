@@ -1,8 +1,10 @@
 export interface TableColumn {
   name: string;
-  dataKey: string;
+  dataKey?: string;
   position?: 'right' | 'left';
   isSortable?: boolean;
-  isAcationable?:boolean;
+  isActionable?:boolean;
+  icon?:string,
+  action?:string
   
 }

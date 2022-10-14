@@ -19,12 +19,18 @@ import { DynamicFormInputComponent } from './dynamic-form/dynamic-form-input/dyn
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { ErrorMessageComponent } from './dynamic-form/error-message/error-message.component';
 import { DynamicUiComponent } from './dynamic-ui.component';
+import { TableComponent } from "./dynamic-table/table.component";
+import { MatTableModule } from '@angular/material/table';
+import { DataPropertyGetterPipe } from './dynamic-table/data-property-getter-pipe/data-property-getter.pipe';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     DynamicUiComponent,
     DynamicFormComponent,
     DynamicFormInputComponent,
     ErrorMessageComponent,
+    
   ],
   imports: [
     FormsModule,
@@ -44,6 +50,9 @@ import { DynamicUiComponent } from './dynamic-ui.component';
     BrowserAnimationsModule,
     MatExpansionModule,
     MatDividerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
 })

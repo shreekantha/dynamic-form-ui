@@ -12,8 +12,8 @@ import { DynamicFormGroup } from '../common/dynamic-form-group';
 export class DynamicFormInputComponent {
   @Input() input: DynamicFormField<string>;
   @Input() form: UntypedFormGroup;
-  @Input() serviceForm: DynamicFormGroup;
-  @Input() group: DynamicFormFieldGroup;
+  @Input() group: DynamicFormGroup;
+  @Input() fieldGroup: DynamicFormFieldGroup;
   @Output() dependencyFieldData = new EventEmitter();
   dependent: any;
   listOfdependentFields: DynamicFormField<string>[] = [];

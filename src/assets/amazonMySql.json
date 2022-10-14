@@ -18,8 +18,8 @@
               "type": "radio",
               "order": 2,
               "visible": true,
+              "dependentType": "FORM_GROUP",
               "dependents": ["mysql", "aurora"],
-              "dependentType": "FORM",
               "options": [
                 {
                   "key": "sql",

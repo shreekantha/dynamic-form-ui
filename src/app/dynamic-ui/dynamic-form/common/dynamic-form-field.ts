@@ -16,10 +16,11 @@ export class DynamicFormField<T> {
   options: { key: string; value: string; default: boolean }[];
 
   // constructor(
-  //   options: {
+  //   keyoptions: {
   //     value?: T;
   //     key?: string;
   //     label?: string;
+  //     validator?: Validator;
   //     order?: number;
   //     controlType?: string;
   //     type?: string;
@@ -27,25 +28,22 @@ export class DynamicFormField<T> {
   //     dependency?: Dependency;
   //     dependents?: string[];
   //     dependentType?: string;
-  //     validator?: Validator;
-  //     options?: { key: string; value: string; checked: boolean }[];
+   
+  //     options?: { key: string; value: string; default: boolean }[];
   //   } = {}
   // ) {
-  //   this.value = options.value;
-  //   this.key = options.key || '';
-  //   this.label = options.label || '';
-  //   this.validator = options.validator || ({} as Validator);
-  //   this.order = options.order === undefined ? 1 : options.order;
-  //   this.controlType = options.controlType || '';
-  //   this.type = options.type || '';
-  //   this.dependency =
-  //     options.dependency === undefined
-  //       ? ({} as Dependency)
-  //       : options.dependency;
-  //   this.dependents = options.dependents;
-  //   this.dependentType =
-  //     options.dependentType === undefined ? 'CONTROL' : options.dependentType;
-  //   this.options = options.options || [];
+  //   this.value = keyoptions.value;
+  //   this.key = keyoptions.key || '';
+  //   this.label = keyoptions.label || '';
+  //   this.validator = keyoptions.validator || ({} as Validator);
+  //   this.order = keyoptions.order === undefined ? 1 : keyoptions.order;
+  //   this.controlType = keyoptions.controlType || '';
+  //   this.type = keyoptions.type || '';
+  //   this.visible=keyoptions.visible || true;
+  //   this.dependency = keyoptions.dependency;
+  //   this.dependents = keyoptions.dependents;
+  //   this.dependentType =keyoptions.dependentType ;
+  //   this.options = keyoptions.options || [];
 
   //   console.log('options:======>', this.options);
   // }

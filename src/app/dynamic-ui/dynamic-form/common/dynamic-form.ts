@@ -4,7 +4,7 @@ export class DynamicForm {
   id: any;
   svcName: string;
   description: string;
-  svcDetails: svcDetails;
+  // svcDetails: svcDetails;
   formGroups: DynamicFormGroup[];
 
   constructor(options: {
@@ -17,7 +17,7 @@ export class DynamicForm {
     console.log('cat======>', options);
     this.id = options.id;
     this.svcName = options.svcName;
-    this.svcDetails = options.svcDetails;
+    // this.svcDetails = options.svcDetails;
     this.formGroups = options.formGroups;
   }
 }

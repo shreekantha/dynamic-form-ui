@@ -1,4 +1,4 @@
-<div class="container" class="body">
+<!-- <div class="container" class="body"> -->
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
     <div class="flex-container" fxLayout="column">
       <div class="col-md-12">&nbsp;</div>
@@ -9,96 +9,46 @@
       </div>
     </div>
     <div class="container">
-      <div *ngFor="let serviceForm of formData.formGroups" class="form-group">
-        <mat-card class="mat-card" *ngIf="serviceForm.visible">
+      <div *ngFor="let group of formData.formGroups" class="form-group">
+        <mat-card class="mat-card" *ngIf="group.visible">
           <mat-card-header>
-            <mat-card-title>{{ serviceForm.name }}</mat-card-title>
-            <mat-card-subtitle>{{ serviceForm.description }}</mat-card-subtitle>
+            <mat-card-title>{{ group.name }}</mat-card-title>
+            <mat-card-subtitle>{{ group.description }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
             <!-- <mat-divider></mat-divider> -->
             <!-- <div class="container"> -->
-            <div
-              class="flex-container"
-              *ngFor="let group of serviceForm.fieldGroups"
-            >
+            <div class="flex-container" *ngFor="let fieldGroup of group.fieldGroups">
               <div fxLayout="row" fxLayout.xs="column">
                 <div fxFlex="1 1 auto" style="margin-bottom: 5px">
                   <div class="field">
-                    <h2 style="margin: 0">{{ group.name }}</h2>
+                    <h2 style="margin: 0">{{ fieldGroup.name }}</h2>
                   </div>
                   <div class="field">
-                    <h3 style="margin: 0">{{ group.description }}</h3>
+                    <h3 style="margin: 0">{{ fieldGroup.description }}</h3>
                   </div>
                 </div>
               </div>
 
               <div fxLayout="row" fxLayout.xs="column">
-                <div fxFlex="1 1" *ngFor="let formField of group.fields">
-                  <FormInput
-                    [group]="group"
-                    [serviceForm]="serviceForm"
-                    [input]="formField"
-                    [form]="form"
-                    (dependencyFieldData)="onChange($event)"
-                  ></FormInput>
+                <div fxFlex="1 1" *ngFor="let formField of fieldGroup.fields">
+                  <FormInput [fieldGroup]="fieldGroup" [group]="group" [input]="formField" [form]="form"
+                    (dependencyFieldData)="onChange($event)"></FormInput>
                 </div>
               </div>
             </div>
             <!-- </div> -->
           </mat-card-content>
-          <mat-card-footer *ngIf="serviceForm.showCalcs">
-            <mat-accordion togglePosition="before">
-              <mat-expansion-panel
-                (opened)="
-                  cal = getCalculations(serviceForm, '/assets/calc.json')
-                "
-              >
-                <mat-expansion-panel-header>
-                  <mat-panel-title>Show Calculations</mat-panel-title>
-                </mat-expansion-panel-header>
-                <ul *ngIf="cal && (cal | async)?.key === serviceForm.key">
-                  <li *ngFor="let item of (cal | async)?.returnStatements">
-                    {{ item }}
-                  </li>
-                </ul>
-              </mat-expansion-panel>
-            </mat-accordion>
+          <mat-card-footer>
+
           </mat-card-footer>
         </mat-card>
       </div>
     </div>
 
-    <div
-      *ngIf="calculations"
-      class="flex-container"
-      fxLayout="column"
-      style="margin-top: 60px"
-    >
-      <p>
-        <mat-divider></mat-divider>
-      </p>
-      <p *ngFor="let calc of calculations.templateWiseCalculation">
-        <label for="" style="float: left"> {{ calc.name }} </label>
-        <label for="" style="float: right"> {{ calc.value }} </label>
-      </p>
-      <p style="font-weight: bold">
-        <label for="" style="float: left"> {{ calculations.name }} </label>
-        <label for="" style="float: right"> {{ calculations.value }} </label>
-      </p>
-    </div>
-
     <div fxLayout="row" class="row" style="float: right; margin-top: 10px">
-      <div
-        class="form-group col-md-12 text-right"
-        style="float: right; text-align: right"
-      >
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="form.invalid"
-        >
+      <div class="form-group col-md-12 text-right" style="float: right; text-align: right">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
           Add to Estimate
         </button>
       </div>
@@ -108,4 +58,4 @@
   <!-- <div *ngIf="payLoad" class="form-group">
     <strong>Here's the payload</strong><br />{{ payLoad }}
   </div> -->
-</div>
+<!-- </div> -->

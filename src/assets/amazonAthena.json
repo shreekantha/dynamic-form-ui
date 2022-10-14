@@ -18,7 +18,7 @@
               "controlType": "textbox",
               "key": "totalnumber",
               "label": "Total number of queries",
-              "visible": true,
+             
               "type": "number",
               "validator": {
                 "required": true

@@ -41,11 +41,11 @@
             >{{ input.label }} &nbsp;</mat-label
           >
         </div>
-        <div>
+        <!-- <div>
           <mat-hint class="full-width" align="end"
             >aftr nm ghtyujik olikthn</mat-hint
           >
-        </div>
+        </div> -->
 
         <mat-form-field
           class="full-width"
@@ -57,7 +57,7 @@
             [formControlName]="input.key"
             (selectionChange)="
               onChange(
-                serviceForm.key,
+                group.key,
                 selected,
                 input.dependents,
                 input.dependentType
@@ -107,7 +107,7 @@
               class="form-check-label"
               (change)="
                 onChange(
-                  serviceForm.key,
+                  group.key,
                   opt.key,
                   input.dependents,
                   input.dependentType

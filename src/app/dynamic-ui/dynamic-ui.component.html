@@ -1,5 +1,21 @@
-<DynamicForm
-  *ngIf="formData"
-  [formData]="formData | async"
-  (handleSubmit)="onSubmit($event)"
-></DynamicForm>
+<div class="containerX" fxLayoutGap="10px">
+  <div class="container">
+    <DynamicForm *ngIf="formData" [formData]="formData | async" (handleSubmit)="onSubmit($event)"></DynamicForm>
+  </div>
+  <div class="container">
+    <div></div>
+  </div>
+  <div class="container">
+
+
+    <div>
+      <mat-card>
+        <DynamicTable *ngIf="tableData" [rowActionIcon]="'remove_shopping_cart'" [isFilterable]="true"
+          [isPageable]="true" [tableData]="tableData" [tableColumns]="tableColumns" [defaultPageSize]="20"
+          [paginationSizes]="[5,10,20]" (sort)="sortData($event)"></DynamicTable>
+      </mat-card>
+    </div>
+  </div>
+
+
+</div>
