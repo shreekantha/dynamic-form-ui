@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
-  UntypedFormControl,
-  UntypedFormGroup,
+  FormControl,
+  FormGroup,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -11,12 +11,12 @@ import { DynamicForm } from './common/dynamic-form';
   providedIn: 'root',
 })
 export class FormfieldControlService {
-  constructor() {}
+  constructor() { }
 
-  toServiceFormGroup(category: DynamicForm): UntypedFormGroup {
+  toServiceFormGroup(dynamicForm: DynamicForm, data?: any): FormGroup {
+    // console.log("service form:", dynamicForm.data)
     const group: any = {};
-
-    category.formGroups.forEach((form) => {
+    dynamicForm.formGroups.forEach((form) => {
       form.fieldGroups.forEach((formgroup) =>
         formgroup.fields.forEach((field) => {
           let defaultValue;
@@ -38,20 +38,22 @@ export class FormfieldControlService {
             if (field.validator.pattern) {
               validator.push(Validators.pattern(field.validator.pattern));
             }
-
-            group[field.key] = new UntypedFormControl(
-              field.value || defaultValue || '',
+            // console.log("value dataaaaaaaaaaaaaa:", dynamicForm?.data);
+            group[field.key] = new FormControl(
+              dynamicForm.data ? dynamicForm.data[field.key] : '',
               validator
             );
+
           } else {
-            group[field.key] = new UntypedFormControl(
-              field.value || defaultValue || ''
+            // console.log("value dataaaaaaaaaaaaaa:", dynamicForm?.data);
+            group[field.key] = new FormControl(
+              dynamicForm.data ? dynamicForm.data[field.key] : ''
             );
           }
         })
       );
     });
 
-    return new UntypedFormGroup(group);
+    return new FormGroup(group);
   }
 }

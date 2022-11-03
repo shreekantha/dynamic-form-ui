@@ -1,8 +1,10 @@
-import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DynamicFormComponent } from './dynamic-form.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { DynamicFormInputComponent } from './dynamic-form-input/dynamic-form-input.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -15,27 +17,21 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DynamicFormInputComponent } from './dynamic-form/dynamic-form-input/dynamic-form-input.component';
-import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
-import { ErrorMessageComponent } from './dynamic-form/error-message/error-message.component';
-import { DynamicUiComponent } from './dynamic-ui.component';
-import { TableComponent } from "./dynamic-table/table.component";
-import { MatTableModule } from '@angular/material/table';
-import { DataPropertyGetterPipe } from './dynamic-table/data-property-getter-pipe/data-property-getter.pipe';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { LayoutModule } from '@angular/cdk/layout';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 @NgModule({
   declarations: [
-    DynamicUiComponent,
-    DynamicFormComponent,
     DynamicFormInputComponent,
-    ErrorMessageComponent,
-    
-  ],
+    DynamicFormComponent,
+    ErrorMessageComponent
+    ],
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
+    CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
     LayoutModule,
     MatCardModule,
     MatToolbarModule,
@@ -49,11 +45,10 @@ import { MatSortModule } from '@angular/material/sort';
     FlexLayoutModule,
     BrowserAnimationsModule,
     MatExpansionModule,
-    MatDividerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    MatDividerModule
   ],
-  providers: [],
+  exports:[
+    DynamicFormComponent
+  ]
 })
-export class DynamicUiModule {}
+export class DynamicFormModule { }

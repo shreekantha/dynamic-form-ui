@@ -10,6 +10,7 @@ export class DynamicFormField<T> {
   controlType: string;
   type: string;
   visible: boolean;
+  notVisible:boolean;
   dependency: Dependency = new Dependency();
   dependents: string[];
   dependentType: string;

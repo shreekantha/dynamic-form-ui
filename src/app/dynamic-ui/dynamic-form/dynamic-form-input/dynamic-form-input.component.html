@@ -1,16 +1,17 @@
-<div id="form" [formGroup]="form">
-  <div [ngSwitch]="input.controlType">
+<div   id="form" [formGroup]="form">
+  <!-- <div  id="form" [formGroup]="form"> -->
+
+  <div  [ngSwitch]="input.controlType">
+    <!-- {{input.visible}} -->
     <div class="field">
       <div *ngSwitchCase="'textbox'">
         <mat-label
-          *ngIf="input.visible"
           class="full-width"
           [attr.for]="input.key"
           >{{ input.label }}</mat-label
         >
         <mat-form-field
           class="full-width"
-          *ngIf="input.visible"
           appearance="outline"
         >
           <input
@@ -32,24 +33,38 @@
         </mat-form-field>
       </div>
 
+      
+
       <div *ngSwitchCase="'dropdown'">
         <div>
+          
           <mat-label
-            *ngIf="input.visible"
+            
             class="full-width"
             [attr.for]="input.key"
             >{{ input.label }} &nbsp;</mat-label
           >
         </div>
-        <!-- <div>
-          <mat-hint class="full-width" align="end"
-            >aftr nm ghtyujik olikthn</mat-hint
-          >
-        </div> -->
-
         <mat-form-field
+        class="full-width"
+        
+        appearance="outline"
+      >
+        <select [id]="input.key"   [formControlName]="input.key" matNativeControl (change)="onChange(
+          group.key,
+         fieldGroup.key,
+          input,
+          $event
+        )">
+        <!-- <option [value]="input.label" selected>
+          {{input.label}}
+        </option> -->
+          <option *ngFor="let opt of input.options" [value]="opt.key">{{opt.value}}</option>
+        </select>
+      </mat-form-field>
+        <!-- <mat-form-field
           class="full-width"
-          *ngIf="input.visible"
+          
           appearance="outline"
         >
           <mat-select
@@ -64,7 +79,11 @@
               )
             "
             [(value)]="selected"
+            #select
           >
+          <mat-option  >
+            {{ input.label }}
+          </mat-option>
             <mat-option *ngFor="let opt of input.options" [value]="opt.key">
               {{ opt.value }}
             </mat-option>
@@ -77,7 +96,7 @@
           >
             <error-message [input]="input" [form]="form"></error-message>
           </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
 
       <div *ngSwitchCase="'checkbox'">
@@ -100,7 +119,7 @@
       </div>
 
       <div *ngSwitchCase="'radio'">
-        <mat-radio-group *ngIf="input.visible">
+        <mat-radio-group >
           <mat-radio-group [formControlName]="input.key">
             <mat-radio-button
               *ngFor="let opt of input.options"
@@ -108,13 +127,14 @@
               (change)="
                 onChange(
                   group.key,
-                  opt.key,
-                  input.dependents,
-                  input.dependentType
+                  fieldGroup.key,
+                  input,
+                  $event
                 )
               "
               [attr.for]="opt.key"
               [value]="opt.key"
+              [checked]="opt.default"
             >
               {{ opt.value }}
             </mat-radio-button>

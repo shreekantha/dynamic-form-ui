@@ -21,45 +21,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DataPropertyGetterPipe } from './dynamic-ui/dynamic-table/data-property-getter-pipe/data-property-getter.pipe';
+import { DynamicFormModule } from './dynamic-ui/dynamic-form/dynamic-form.module';
+import { ObjectValuePipe } from './dynamic-ui/dynamic-table/object-value-pipe/object-value.pipe';
+import { DynamicTableModule } from './dynamic-ui/dynamic-table/dynamic-table.module';
 import { TableComponent } from './dynamic-ui/dynamic-table/table.component';
-import { DynamicUiModule } from './dynamic-ui/dynamic-ui.module';
+// import { DynamicUiModule } from './dynamic-ui/dynamic-ui.module';
 import { HomeComponent } from './home/home.component';
+// import { UserComponent } from './uesr/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // DynamicFormInputComponent,
-    // DynamicFormComponent,
-    // DynamicUi,
-    HomeComponent,
-    // ErrorMessageComponent,
-    TableComponent,
-    DataPropertyGetterPipe
+    HomeComponent 
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
     AppRoutingModule,
-    // DynamicUiModule,
-    HttpClientModule,
-    LayoutModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatInputModule,
-    MatIconModule,
-    MatListModule,
-    MatRadioModule,
-    MatSelectModule,
-    FlexLayoutModule,
-    BrowserAnimationsModule,
-    MatExpansionModule,
-    MatDividerModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent],

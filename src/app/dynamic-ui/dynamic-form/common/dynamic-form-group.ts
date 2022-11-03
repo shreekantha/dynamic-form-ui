@@ -7,7 +7,7 @@ export class DynamicFormGroup {
   name: string;
   description: string;
   visible: boolean;
-  showCalcs: boolean;
+  notVisible:boolean;
   fieldGroups: DynamicFormFieldGroup[] = [new DynamicFormFieldGroup({})];
   dependency: Dependency = new Dependency();
 }

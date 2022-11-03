@@ -1,0 +1,81 @@
+{
+    "id": 1,
+    "svcName": "Create/EDit User ",
+    "description": "User form to enroll for the course",
+    "formGroups": [
+        {
+            "id": 1,
+            "key": "user-form",
+            "name": "Basic Details",
+            "visible": true,
+            "fieldGroups": [
+                {
+                    "order": 1,
+                    "fields": [
+                       
+                        {
+                            "order": 2,
+                            "key": "first_name",
+                            "label": "First Name",
+                            "controlType": "textbox",
+                            "type": "text",
+                            "visible": true
+                        },
+                        {
+                            "order": 3,
+                            "key": "last_name",
+                            "label": "Last Name",
+                            "controlType": "textbox",
+                            "type": "text",
+                            "visible": true
+                        }
+                    ]
+                },
+                {
+                    "order": 1,
+                    "fields": [
+                        {
+                            "order": 4,
+                            "key": "email",
+                            "label": "Email",
+                            "controlType": "textbox",
+                            "type": "email",
+                            "visible": true
+                        },
+                        {
+                            "order": 5,
+                            "key": "mobile",
+                            "label": "Mobile",
+                            "controlType": "textbox",
+                            "type": "number",
+                            "visible": true
+                        },
+                        {
+                            "controlType": "dropdown",
+                            "key": "frequency",
+                            "label": "Frequency",
+                            "options": [
+                              { "key": "perDay", "value": "Per Day", "default": true },
+                              { "key": "perWeek", "value": "Per Week" },
+                              { "key": "perMonth", "value": "Per Month" }
+                            ],
+                            "order": 2,
+                            "visible": true,
+                           "dependents":["numberofreads"],
+                           "dependentType":"CONTROL",
+                            "validator": {
+                              "required": true
+                            }
+                          }
+                    ]
+                }
+                
+                
+            ]
+        }
+        
+    
+    
+    
+    ]
+}

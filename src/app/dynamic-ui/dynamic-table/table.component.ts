@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -10,8 +11,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { TableActionColumn } from './TableActionColumn';
-import { TableColumn } from './TableColumn';
+import { TableColumn } from './model/TableColumn';
 
 @Component({
   selector: 'DynamicTable',
@@ -28,14 +28,14 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @Input() isPageable = false;
   @Input() isPageableServerSide = false;
-  @Input() paginationType = 'client';
+  @Input() paginationType = 'server';
   @Input() isSortable = false;
   @Input() isFilterable = false;
   @Input() tableColumns: TableColumn[] = [];
-  @Input() tableActionColumns: TableActionColumn[] = [];
   @Input() rowActionIcon: string;
   @Input() paginationSizes: number[] = [5, 10, 15];
   @Input() defaultPageSize = this.paginationSizes[1];
+  @Input() total: number;
 
 
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
@@ -44,33 +44,38 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   // this property needs to have a setter, to dynamically get changes from parent component
   @Input() set tableData(data: any[]) {
+    console.log('set tableData:', data);
+
     this.setTableDataSource(data);
   }
 
-  @Input() total: number;
 
-  constructor() { }
+  constructor(private changeDetectorRefs: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     console.log("tablecolumns", { ...this.tableColumns }, "length :", this.total)
-    const columnNames = this.tableColumns.map(tableColumn => tableColumn.name);
+    const columnNames = this.tableColumns.map(tableColumn => tableColumn.label);
     this.displayedColumns = columnNames;
   }
 
   // we need this, in order to make pagination work with *ngIf
   ngAfterViewInit(): void {
-    console.log("type++++++++++++++;",this.paginationType);
-    
-    if (this.paginationType==='client')
+    console.log("type++++++++++++++;", this.paginationType);
+
+    if (this.paginationType === 'client')
       this.tableDataSource.paginator = this.matPaginator;
+      // this.changeDetectorRefs.detectChanges()
   }
 
   setTableDataSource(data: any) {
+
     this.tableDataSource = new MatTableDataSource<any>(data);
     this.tableDataSource.sort = this.matSort;
-    if (this.paginationType==='client')
-      this.tableDataSource.paginator = this.matPaginator;
+    console.log('setTableDataSource:', this.tableDataSource);
 
+    if (this.paginationType === 'client')
+      this.tableDataSource.paginator = this.matPaginator;
+    this.changeDetectorRefs.detectChanges()
   }
 
   applyFilter(event: Event) {
@@ -82,8 +87,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   sortTable(sortParameters: Sort) {
     // defining name of data property, to sort by, instead of column name
     sortParameters.active = this.tableColumns.find(
-      (column) => column.name === sortParameters.active
-    ).dataKey;
+      (column) => column.label === sortParameters.active
+    ).key;
     this.sort.emit(sortParameters);
   }
 

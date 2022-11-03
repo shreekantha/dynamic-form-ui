@@ -12,3 +12,10 @@
     margin-left: 10px !important;
     margin-right: 5px !important;
   }
+  .hide{
+    display: none !important;
+}
+
+.show{
+    display: block !important;
+}

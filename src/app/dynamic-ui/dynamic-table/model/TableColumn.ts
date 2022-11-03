@@ -1,10 +1,13 @@
 export interface TableColumn {
-  name: string;
-  dataKey?: string;
-  position?: 'right' | 'left';
-  isSortable?: boolean;
-  isActionable?:boolean;
+  label: string;
   icon?:string,
   action?:string
+  color?:string,
+  key?: string;
+  position?: 'right' | 'left';
+  isImage?:boolean;
+  isSortable?: boolean;
+  isActionable?:boolean;
+
   
 }

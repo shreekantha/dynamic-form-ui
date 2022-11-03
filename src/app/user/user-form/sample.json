@@ -1,0 +1,54 @@
+{
+    "id": 1,
+    "name": "Create/EDit User ",
+    "description": "User form to enroll for the course",
+    "formGroups": [
+        {
+            "id": 1,
+            "key": "user-form",
+            "name": "Basic Details",
+            "fieldGroups": [
+                {
+                    "order": 1,
+                    "fields": [
+                        
+                        {
+                            "order": 2,
+                            "key": "id",
+                            "label": "Id",
+                            "controlType": "textbox",
+                            "type": "number",
+                            "notVisible":true
+                        },
+                        {
+                            "order": 3,
+                            "key": "userId",
+                            "label": "User Id",
+                            "controlType": "textbox",
+                            "type": "text"
+                        }
+                    ]
+                },
+                {
+                    "order": 1,
+                    "fields": [
+                        {
+                            "order": 4,
+                            "key": "title",
+                            "label": "Title",
+                            "controlType": "textbox",
+                            "type": "text"
+                        },
+                        {
+                            "order": 5,
+                            "key": "body",
+                            "label": "Body",
+                            "controlType": "textarea",
+                            "type": "textarea"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

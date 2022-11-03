@@ -1,0 +1,9 @@
+<div class="flex-container">
+    <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="auto">
+        <DynamicTable *ngIf="tableData" [tableData]="tableData" [tableColumns]="tableColumns" [isFilterable]="true" [isPageable]="true" 
+           [paginationSizes]="[5,10,20]" [total]="total" (filter)="handleFilter($event)" (action)="handleAction($event)" (sort)="handleSort($event)">
+        </DynamicTable>
+      </div>
+    </div>
+</div>

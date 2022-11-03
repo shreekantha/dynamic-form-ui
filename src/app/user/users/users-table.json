@@ -1,0 +1,14 @@
+{
+   "columns": [
+        { "label": "Id", "key": "id" },
+        { "label": "FirstName", "key": "first_name", "isSortable": true },
+        { "label": "LastName", "key": "last_name" },
+        { "label": "Email", "key": "email", "isSortable": true },
+        { "label": "Avatar", "key": "avatar","isImage":true },
+        { "label": "View", "icon": "pen", "isActionable": true, "action": "view" },
+        { "label": "Edit", "icon": "pen", "isActionable": true, "action": "edit" },
+        { "label": "Delete", "icon": "pen", "isActionable": true, "action": "delete" }
+      ],
+    "pazinationSizes":[5, 10, 25, 50, 100],
+    "defaultPazeSize" : 5
+}

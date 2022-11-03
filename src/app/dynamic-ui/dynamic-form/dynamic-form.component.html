@@ -5,12 +5,13 @@
     </div>
     <div class="flex-container" fxLayout="column">
       <div class="col-md-12">
-        <h1>{{ formData.svcName }}</h1>
+        <h1>{{ formData.name }}</h1>
       </div>
     </div>
     <div class="container">
       <div *ngFor="let group of formData.formGroups" class="form-group">
-        <mat-card class="mat-card" *ngIf="group.visible">
+       <div [ngClass]="group.notVisible===true?'hide':'show'" >
+        <mat-card class="mat-card" >
           <mat-card-header>
             <mat-card-title>{{ group.name }}</mat-card-title>
             <mat-card-subtitle>{{ group.description }}</mat-card-subtitle>
@@ -30,10 +31,15 @@
                 </div>
               </div>
 
-              <div fxLayout="row" fxLayout.xs="column">
-                <div fxFlex="1 1" *ngFor="let formField of fieldGroup.fields">
-                  <FormInput [fieldGroup]="fieldGroup" [group]="group" [input]="formField" [form]="form"
+              <div  fxLayout="row" fxLayout.xs="column">
+                <div fxFlex="1 1"  [ngClass]="formField.notVisible==true?'hide':'show'"  *ngFor="let formField of fieldGroup.fields">
+                 
+                  <!-- <div *ngIf="!formField.notVisible"> -->
+                    <FormInput  [fieldGroup]="fieldGroup" [group]="group" [input]="formField" [form]="form"
                     (dependencyFieldData)="onChange($event)"></FormInput>
+                   
+                  <!-- </div> -->
+               
                 </div>
               </div>
             </div>
@@ -43,6 +49,7 @@
 
           </mat-card-footer>
         </mat-card>
+      </div>
       </div>
     </div>
 
