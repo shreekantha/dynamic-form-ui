@@ -1,10 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, UntypedFormGroup } from '@angular/forms';
-import { Calculations } from './common/calculation';
-import { DynamicForm } from './common/dynamic-form';
-import { DynamicFormField } from './common/dynamic-form-field';
-import { DynamicFormGroup } from './common/dynamic-form-group';
+import { FormGroup } from '@angular/forms';
+import { DynamicForm } from './model/dynamic-form';
 import { FormfieldControlService } from './formfield-control.service';
 
 @Component({

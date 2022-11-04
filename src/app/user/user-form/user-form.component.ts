@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { DynamicForm } from 'src/app/dynamic-ui/dynamic-form/common/dynamic-form';
+import { DynamicForm } from 'src/app/dynamic-ui/dynamic-form/model/dynamic-form';
 import { TableColumn } from 'src/app/dynamic-ui/dynamic-table/model/TableColumn';
 import userForm from './form-sample.json';
 @Component({

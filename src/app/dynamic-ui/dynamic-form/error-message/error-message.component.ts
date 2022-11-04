@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormGroup } from '@angular/forms';
-import { DynamicFormField } from '../common/dynamic-form-field';
+import { DynamicFormField } from '../model/dynamic-form-field';
 
 @Component({
   selector: 'error-message',

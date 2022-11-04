@@ -32,11 +32,11 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
-    LayoutModule,
+   
     MatCardModule,
-    MatToolbarModule,
+   
     MatButtonModule,
-    MatSidenavModule,
+    
     MatInputModule,
     MatIconModule,
     MatListModule,
@@ -44,7 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
-    MatExpansionModule,
+    
     MatDividerModule
   ],
   exports:[

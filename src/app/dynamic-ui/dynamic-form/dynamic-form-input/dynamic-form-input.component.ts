@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormGroup, UntypedFormGroup } from '@angular/forms';
 import { MatSelect } from '@angular/material/select';
-import { DynamicFormField } from '../common/dynamic-form-field';
-import { DynamicFormFieldGroup } from '../common/dynamic-form-field-group';
-import { DynamicFormGroup } from '../common/dynamic-form-group';
+import { DynamicFormField } from '../model/dynamic-form-field';
+import { DynamicFormFieldGroup } from '../model/dynamic-form-field-group';
+import { DynamicFormGroup } from '../model/dynamic-form-group';
 
 @Component({
   selector: 'FormInput',
@@ -27,11 +27,11 @@ export class DynamicFormInputComponent {
   }
 
   onChange(formKey, fieldGroupKey, input, event) {
-    // console.log("event:",event,":",input);
+     console.log("event:",event,":",input);
 
     if (input.dependents) {
       const data = { formKey, fieldGroupKey, dependentKeys: input.dependents, value: input.controlType == 'radio' ? event.source.value : event.target.value, dependentType: input.dependentType };
-      //  console.log('data:=========', data);
+       console.log('dependents data:=========', data);
       this.dependencyFieldData.emit(data);
     }
   }

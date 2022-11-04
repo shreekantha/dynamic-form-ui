@@ -5,7 +5,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { DynamicForm } from './common/dynamic-form';
+import { DynamicForm } from './model/dynamic-form';
 
 @Injectable({
   providedIn: 'root',

@@ -148,18 +148,37 @@
       </div>
 
       <div *ngSwitchCase="'textarea'">
-        <label [attr.for]="input.key">{{ input.label }}</label>
+        <!-- <label [attr.for]="input.key">{{ input.label }}</label> -->
+         <mat-label
+          class="full-width"
+          [attr.for]="input.key"
+          >{{ input.label }}</mat-label
+        >
+        <mat-form-field
+          class="full-width"
+          appearance="outline"
+        >
         <textarea
+        matInput
           class="form-control"
           [formControlName]="input.key"
           [id]="input.key"
           rows="5"
         ></textarea>
-        <div *ngIf="form.get(input.key).dirty || form.get(input.key).touched">
+        <!-- <div *ngIf="form.get(input.key).dirty || form.get(input.key).touched">
           <small style="color: red" *ngIf="!form.get(input.key).valid">
             {{ input.label }} is Required
           </small>
-        </div>
+        </div> -->
+        <mat-error
+            *ngIf="
+              form.get(input.key).invalid &&
+              (form.get(input.key).dirty || form.get(input.key).touched)
+            "
+          >
+            <error-message [input]="input" [form]="form"></error-message>
+          </mat-error>
+        </mat-form-field>
       </div>
     </div>
   </div>

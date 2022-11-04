@@ -16,7 +16,7 @@
                             "order": 2,
                             "key": "first_name",
                             "label": "First Name",
-                            "controlType": "textbox",
+                            "controlType": "textarea",
                             "type": "text"
                         },
                         {
